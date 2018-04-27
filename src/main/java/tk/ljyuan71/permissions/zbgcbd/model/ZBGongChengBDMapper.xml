@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.zbgcbd.dao.ZBGongChengBDDao" >
+    <resultMap id="ZBGongChengBD" type="tk.ljyuan71.permissions.zbgcbd.model.ZBGongChengBD">
+		<id property="bdGuid" column="BD_GUID" jdbcType="VARCHAR"/>
+		<result property="gcGuid" column="GC_GUID" jdbcType="VARCHAR"/>
+		<result property="bdBh" column="BD_BH" jdbcType="VARCHAR"/>
+		<result property="bdName" column="BD_NAME" jdbcType="CLOB"/>
+		<result property="pbBanfa" column="PB_BANFA" jdbcType="NUMERIC"/>
+		<result property="createTime" column="CREATE_TIME" jdbcType="NUMERIC"/>
+		<result property="isDeleted" column="IS_DELETED" jdbcType="NUMERIC"/>
+		<result property="modifyTime" column="MODIFY_TIME" jdbcType="NUMERIC"/>
+		<result property="pbFangshi" column="PB_FANGSHI" jdbcType="NUMERIC"/>
+		<result property="isJieshouLianheti" column="IS_JIESHOU_LIANHETI" jdbcType="NUMERIC"/>
+		<result property="isPtfwf" column="IS_PTFWF" jdbcType="VARCHAR"/>
+		<result property="ptfwfShouqufangshi" column="PTFWF_SHOUQUFANGSHI" jdbcType="VARCHAR"/>
+		<result property="bzjJisuanfangshi" column="BZJ_JISUANFANGSHI" jdbcType="VARCHAR"/>
+		<result property="isZbkzj" column="IS_ZBKZJ" jdbcType="VARCHAR"/>
+		<result property="kaibiaoXingshi" column="KAIBIAO_XINGSHI" jdbcType="VARCHAR"/>
+		<result property="pingbiaoXingshi" column="PINGBIAO_XINGSHI" jdbcType="VARCHAR"/>
+		<result property="bzjJineBili" column="BZJ_JINE_BILI" jdbcType="NUMERIC"/>
+		<result property="ptfwfJine" column="PTFWF_JINE" jdbcType="NUMERIC"/>
+		<result property="isQingdanwenjian" column="IS_QINGDANWENJIAN" jdbcType="VARCHAR"/>
+		<result property="zbwjFabutime" column="ZBWJ_FABUTIME" jdbcType="NUMERIC"/>
+		<result property="yswjIssell" column="YSWJ_ISSELL" jdbcType="VARCHAR"/>
+		<result property="yswjbsJine" column="YSWJBS_JINE" jdbcType="NUMERIC"/>
+		<result property="zbwjIssell" column="ZBWJ_ISSELL" jdbcType="VARCHAR"/>
+		<result property="zbwjbsJine" column="ZBWJBS_JINE" jdbcType="NUMERIC"/>
+		<result property="isTuzhiwenjian" column="IS_TUZHIWENJIAN" jdbcType="VARCHAR"/>
+		<result property="yajinjine" column="YAJINJINE" jdbcType="NUMERIC"/>
+		<result property="bdContent" column="BD_CONTENT" jdbcType="CLOB"/>
+		<result property="dayLimit" column="DAY_LIMIT" jdbcType="NUMERIC"/>
+		<result property="jiansheaddress" column="JIANSHEADDRESS" jdbcType="VARCHAR"/>
+		<result property="transporttype" column="TRANSPORTTYPE" jdbcType="VARCHAR"/>
+		<result property="arrivestation" column="ARRIVESTATION" jdbcType="VARCHAR"/>
+		<result property="paytype" column="PAYTYPE" jdbcType="VARCHAR"/>
+		<result property="deliverydate" column="DELIVERYDATE" jdbcType="NUMERIC"/>
+		<result property="delivertype" column="DELIVERTYPE" jdbcType="VARCHAR"/>
+		<result property="deliveraddress" column="DELIVERADDRESS" jdbcType="VARCHAR"/>
+		<result property="filetoaddress" column="FILETOADDRESS" jdbcType="VARCHAR"/>
+		<result property="coverArea" column="COVER_AREA" jdbcType="VARCHAR"/>
+		<result property="structLayer" column="STRUCT_LAYER" jdbcType="VARCHAR"/>
+		<result property="structFloor" column="STRUCT_FLOOR" jdbcType="VARCHAR"/>
+		<result property="bzjJiaonafangshi" column="BZJ_JIAONAFANGSHI" jdbcType="NUMERIC"/>
+		<result property="kbPlace" column="KB_PLACE" jdbcType="CLOB"/>
+		<result property="yskbPlace" column="YSKB_PLACE" jdbcType="CLOB"/>
+	</resultMap>
+	<sql id="columns">
+		BD_GUID,GC_GUID,BD_BH,BD_NAME,PB_BANFA,CREATE_TIME,IS_DELETED,MODIFY_TIME,PB_FANGSHI,IS_JIESHOU_LIANHETI,IS_PTFWF,PTFWF_SHOUQUFANGSHI,BZJ_JISUANFANGSHI,IS_ZBKZJ,KAIBIAO_XINGSHI,PINGBIAO_XINGSHI,BZJ_JINE_BILI,PTFWF_JINE,IS_QINGDANWENJIAN,ZBWJ_FABUTIME,YSWJ_ISSELL,YSWJBS_JINE,ZBWJ_ISSELL,ZBWJBS_JINE,IS_TUZHIWENJIAN,YAJINJINE,BD_CONTENT,DAY_LIMIT,JIANSHEADDRESS,TRANSPORTTYPE,ARRIVESTATION,PAYTYPE,DELIVERYDATE,DELIVERTYPE,DELIVERADDRESS,FILETOADDRESS,COVER_AREA,STRUCT_LAYER,STRUCT_FLOOR,BZJ_JIAONAFANGSHI,KB_PLACE,YSKB_PLACE
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(bdGuid)"> AND instr(BD_GUID,'${bdGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(bdGuidEquals)"> AND BD_GUID  =#{bdGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcGuid)"> AND instr(GC_GUID,'${gcGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcGuidEquals)"> AND GC_GUID  =#{gcGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bdBh)"> AND instr(BD_BH,'${bdBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(bdBhEquals)"> AND BD_BH  =#{bdBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bdName)"> AND instr(BD_NAME,'${bdName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(bdNameEquals)"> AND BD_NAME  =#{bdNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(pbBanfa)"> AND PB_BANFA  =#{pbBanfa} </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATE_TIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND IS_DELETED  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(modifyTime)"> AND MODIFY_TIME  =#{modifyTime} </if>
+			<if test="@Ognl@isNotEmpty(pbFangshi)"> AND PB_FANGSHI  =#{pbFangshi} </if>
+			<if test="@Ognl@isNotEmpty(isJieshouLianheti)"> AND IS_JIESHOU_LIANHETI  =#{isJieshouLianheti} </if>
+			<if test="@Ognl@isNotEmpty(isPtfwf)"> AND instr(IS_PTFWF,'${isPtfwf}')>0  </if>
+			<if test="@Ognl@isNotEmpty(isPtfwfEquals)"> AND IS_PTFWF  =#{isPtfwfEquals}  </if>
+			<if test="@Ognl@isNotEmpty(ptfwfShouqufangshi)"> AND instr(PTFWF_SHOUQUFANGSHI,'${ptfwfShouqufangshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(ptfwfShouqufangshiEquals)"> AND PTFWF_SHOUQUFANGSHI  =#{ptfwfShouqufangshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bzjJisuanfangshi)"> AND instr(BZJ_JISUANFANGSHI,'${bzjJisuanfangshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(bzjJisuanfangshiEquals)"> AND BZJ_JISUANFANGSHI  =#{bzjJisuanfangshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isZbkzj)"> AND instr(IS_ZBKZJ,'${isZbkzj}')>0  </if>
+			<if test="@Ognl@isNotEmpty(isZbkzjEquals)"> AND IS_ZBKZJ  =#{isZbkzjEquals}  </if>
+			<if test="@Ognl@isNotEmpty(kaibiaoXingshi)"> AND instr(KAIBIAO_XINGSHI,'${kaibiaoXingshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(kaibiaoXingshiEquals)"> AND KAIBIAO_XINGSHI  =#{kaibiaoXingshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(pingbiaoXingshi)"> AND instr(PINGBIAO_XINGSHI,'${pingbiaoXingshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(pingbiaoXingshiEquals)"> AND PINGBIAO_XINGSHI  =#{pingbiaoXingshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bzjJineBili)"> AND BZJ_JINE_BILI  =#{bzjJineBili} </if>
+			<if test="@Ognl@isNotEmpty(ptfwfJine)"> AND PTFWF_JINE  =#{ptfwfJine} </if>
+			<if test="@Ognl@isNotEmpty(isQingdanwenjian)"> AND instr(IS_QINGDANWENJIAN,'${isQingdanwenjian}')>0  </if>
+			<if test="@Ognl@isNotEmpty(isQingdanwenjianEquals)"> AND IS_QINGDANWENJIAN  =#{isQingdanwenjianEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbwjFabutime)"> AND ZBWJ_FABUTIME  =#{zbwjFabutime} </if>
+			<if test="@Ognl@isNotEmpty(yswjIssell)"> AND instr(YSWJ_ISSELL,'${yswjIssell}')>0  </if>
+			<if test="@Ognl@isNotEmpty(yswjIssellEquals)"> AND YSWJ_ISSELL  =#{yswjIssellEquals}  </if>
+			<if test="@Ognl@isNotEmpty(yswjbsJine)"> AND YSWJBS_JINE  =#{yswjbsJine} </if>
+			<if test="@Ognl@isNotEmpty(zbwjIssell)"> AND instr(ZBWJ_ISSELL,'${zbwjIssell}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbwjIssellEquals)"> AND ZBWJ_ISSELL  =#{zbwjIssellEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbwjbsJine)"> AND ZBWJBS_JINE  =#{zbwjbsJine} </if>
+			<if test="@Ognl@isNotEmpty(isTuzhiwenjian)"> AND instr(IS_TUZHIWENJIAN,'${isTuzhiwenjian}')>0  </if>
+			<if test="@Ognl@isNotEmpty(isTuzhiwenjianEquals)"> AND IS_TUZHIWENJIAN  =#{isTuzhiwenjianEquals}  </if>
+			<if test="@Ognl@isNotEmpty(yajinjine)"> AND YAJINJINE  =#{yajinjine} </if>
+			<if test="@Ognl@isNotEmpty(bdContent)"> AND instr(BD_CONTENT,'${bdContent}')>0  </if>
+			<if test="@Ognl@isNotEmpty(bdContentEquals)"> AND BD_CONTENT  =#{bdContentEquals}  </if>
+			<if test="@Ognl@isNotEmpty(dayLimit)"> AND DAY_LIMIT  =#{dayLimit} </if>
+			<if test="@Ognl@isNotEmpty(jiansheaddress)"> AND instr(JIANSHEADDRESS,'${jiansheaddress}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jiansheaddressEquals)"> AND JIANSHEADDRESS  =#{jiansheaddressEquals}  </if>
+			<if test="@Ognl@isNotEmpty(transporttype)"> AND instr(TRANSPORTTYPE,'${transporttype}')>0  </if>
+			<if test="@Ognl@isNotEmpty(transporttypeEquals)"> AND TRANSPORTTYPE  =#{transporttypeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(arrivestation)"> AND instr(ARRIVESTATION,'${arrivestation}')>0  </if>
+			<if test="@Ognl@isNotEmpty(arrivestationEquals)"> AND ARRIVESTATION  =#{arrivestationEquals}  </if>
+			<if test="@Ognl@isNotEmpty(paytype)"> AND instr(PAYTYPE,'${paytype}')>0  </if>
+			<if test="@Ognl@isNotEmpty(paytypeEquals)"> AND PAYTYPE  =#{paytypeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(deliverydate)"> AND DELIVERYDATE  =#{deliverydate} </if>
+			<if test="@Ognl@isNotEmpty(delivertype)"> AND instr(DELIVERTYPE,'${delivertype}')>0  </if>
+			<if test="@Ognl@isNotEmpty(delivertypeEquals)"> AND DELIVERTYPE  =#{delivertypeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(deliveraddress)"> AND instr(DELIVERADDRESS,'${deliveraddress}')>0  </if>
+			<if test="@Ognl@isNotEmpty(deliveraddressEquals)"> AND DELIVERADDRESS  =#{deliveraddressEquals}  </if>
+			<if test="@Ognl@isNotEmpty(filetoaddress)"> AND instr(FILETOADDRESS,'${filetoaddress}')>0  </if>
+			<if test="@Ognl@isNotEmpty(filetoaddressEquals)"> AND FILETOADDRESS  =#{filetoaddressEquals}  </if>
+			<if test="@Ognl@isNotEmpty(coverArea)"> AND instr(COVER_AREA,'${coverArea}')>0  </if>
+			<if test="@Ognl@isNotEmpty(coverAreaEquals)"> AND COVER_AREA  =#{coverAreaEquals}  </if>
+			<if test="@Ognl@isNotEmpty(structLayer)"> AND instr(STRUCT_LAYER,'${structLayer}')>0  </if>
+			<if test="@Ognl@isNotEmpty(structLayerEquals)"> AND STRUCT_LAYER  =#{structLayerEquals}  </if>
+			<if test="@Ognl@isNotEmpty(structFloor)"> AND instr(STRUCT_FLOOR,'${structFloor}')>0  </if>
+			<if test="@Ognl@isNotEmpty(structFloorEquals)"> AND STRUCT_FLOOR  =#{structFloorEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bzjJiaonafangshi)"> AND BZJ_JIAONAFANGSHI  =#{bzjJiaonafangshi} </if>
+			<if test="@Ognl@isNotEmpty(kbPlace)"> AND instr(KB_PLACE,'${kbPlace}')>0  </if>
+			<if test="@Ognl@isNotEmpty(kbPlaceEquals)"> AND KB_PLACE  =#{kbPlaceEquals}  </if>
+			<if test="@Ognl@isNotEmpty(yskbPlace)"> AND instr(YSKB_PLACE,'${yskbPlace}')>0  </if>
+			<if test="@Ognl@isNotEmpty(yskbPlaceEquals)"> AND YSKB_PLACE  =#{yskbPlaceEquals}  </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(BD_GUID,'${search}')>0    or 
+							instr(GC_GUID,'${search}')>0    or 
+							instr(BD_BH,'${search}')>0    or 
+							instr(BD_NAME,'${search}')>0    or 
+							instr(PB_BANFA,'${search}')>0    or 
+							instr(CREATE_TIME,'${search}')>0    or 
+							instr(IS_DELETED,'${search}')>0    or 
+							instr(MODIFY_TIME,'${search}')>0    or 
+							instr(PB_FANGSHI,'${search}')>0    or 
+							instr(IS_JIESHOU_LIANHETI,'${search}')>0    or 
+							instr(IS_PTFWF,'${search}')>0    or 
+							instr(PTFWF_SHOUQUFANGSHI,'${search}')>0    or 
+							instr(BZJ_JISUANFANGSHI,'${search}')>0    or 
+							instr(IS_ZBKZJ,'${search}')>0    or 
+							instr(KAIBIAO_XINGSHI,'${search}')>0    or 
+							instr(PINGBIAO_XINGSHI,'${search}')>0    or 
+							instr(BZJ_JINE_BILI,'${search}')>0    or 
+							instr(PTFWF_JINE,'${search}')>0    or 
+							instr(IS_QINGDANWENJIAN,'${search}')>0    or 
+							instr(ZBWJ_FABUTIME,'${search}')>0    or 
+							instr(YSWJ_ISSELL,'${search}')>0    or 
+							instr(YSWJBS_JINE,'${search}')>0    or 
+							instr(ZBWJ_ISSELL,'${search}')>0    or 
+							instr(ZBWJBS_JINE,'${search}')>0    or 
+							instr(IS_TUZHIWENJIAN,'${search}')>0    or 
+							instr(YAJINJINE,'${search}')>0    or 
+							instr(BD_CONTENT,'${search}')>0    or 
+							instr(DAY_LIMIT,'${search}')>0    or 
+							instr(JIANSHEADDRESS,'${search}')>0    or 
+							instr(TRANSPORTTYPE,'${search}')>0    or 
+							instr(ARRIVESTATION,'${search}')>0    or 
+							instr(PAYTYPE,'${search}')>0    or 
+							instr(DELIVERYDATE,'${search}')>0    or 
+							instr(DELIVERTYPE,'${search}')>0    or 
+							instr(DELIVERADDRESS,'${search}')>0    or 
+							instr(FILETOADDRESS,'${search}')>0    or 
+							instr(COVER_AREA,'${search}')>0    or 
+							instr(STRUCT_LAYER,'${search}')>0    or 
+							instr(STRUCT_FLOOR,'${search}')>0    or 
+							instr(BZJ_JIAONAFANGSHI,'${search}')>0    or 
+							instr(KB_PLACE,'${search}')>0    or 
+							instr(YSKB_PLACE,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.zbgcbd.model.ZBGongChengBD">
+        insert into ZB_GC_BD
+		(<include refid="columns"/>)
+		values
+		(
+			#{bdGuid,jdbcType=VARCHAR}, 
+			#{gcGuid,jdbcType=VARCHAR}, 
+			#{bdBh,jdbcType=VARCHAR}, 
+			#{bdName,jdbcType=CLOB}, 
+			#{pbBanfa,jdbcType=NUMERIC}, 
+			#{createTime,jdbcType=NUMERIC}, 
+			#{isDeleted,jdbcType=NUMERIC}, 
+			#{modifyTime,jdbcType=NUMERIC}, 
+			#{pbFangshi,jdbcType=NUMERIC}, 
+			#{isJieshouLianheti,jdbcType=NUMERIC}, 
+			#{isPtfwf,jdbcType=VARCHAR}, 
+			#{ptfwfShouqufangshi,jdbcType=VARCHAR}, 
+			#{bzjJisuanfangshi,jdbcType=VARCHAR}, 
+			#{isZbkzj,jdbcType=VARCHAR}, 
+			#{kaibiaoXingshi,jdbcType=VARCHAR}, 
+			#{pingbiaoXingshi,jdbcType=VARCHAR}, 
+			#{bzjJineBili,jdbcType=NUMERIC}, 
+			#{ptfwfJine,jdbcType=NUMERIC}, 
+			#{isQingdanwenjian,jdbcType=VARCHAR}, 
+			#{zbwjFabutime,jdbcType=NUMERIC}, 
+			#{yswjIssell,jdbcType=VARCHAR}, 
+			#{yswjbsJine,jdbcType=NUMERIC}, 
+			#{zbwjIssell,jdbcType=VARCHAR}, 
+			#{zbwjbsJine,jdbcType=NUMERIC}, 
+			#{isTuzhiwenjian,jdbcType=VARCHAR}, 
+			#{yajinjine,jdbcType=NUMERIC}, 
+			#{bdContent,jdbcType=CLOB}, 
+			#{dayLimit,jdbcType=NUMERIC}, 
+			#{jiansheaddress,jdbcType=VARCHAR}, 
+			#{transporttype,jdbcType=VARCHAR}, 
+			#{arrivestation,jdbcType=VARCHAR}, 
+			#{paytype,jdbcType=VARCHAR}, 
+			#{deliverydate,jdbcType=NUMERIC}, 
+			#{delivertype,jdbcType=VARCHAR}, 
+			#{deliveraddress,jdbcType=VARCHAR}, 
+			#{filetoaddress,jdbcType=VARCHAR}, 
+			#{coverArea,jdbcType=VARCHAR}, 
+			#{structLayer,jdbcType=VARCHAR}, 
+			#{structFloor,jdbcType=VARCHAR}, 
+			#{bzjJiaonafangshi,jdbcType=NUMERIC}, 
+			#{kbPlace,jdbcType=CLOB}, 
+			#{yskbPlace,jdbcType=CLOB}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.zbgcbd.model.ZBGongChengBD">
+		update ZB_GC_BD 
+		<set>
+	        <if test="@Ognl@isNotEmpty(gcGuid)">
+	        	GC_GUID=#{gcGuid,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bdBh)">
+	        	BD_BH=#{bdBh,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bdName)">
+	        	BD_NAME=#{bdName,jdbcType=CLOB},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(pbBanfa)">
+	        	PB_BANFA=#{pbBanfa,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(createTime)">
+	        	CREATE_TIME=#{createTime,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isDeleted)">
+	        	IS_DELETED=#{isDeleted,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(modifyTime)">
+	        	MODIFY_TIME=#{modifyTime,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(pbFangshi)">
+	        	PB_FANGSHI=#{pbFangshi,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isJieshouLianheti)">
+	        	IS_JIESHOU_LIANHETI=#{isJieshouLianheti,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isPtfwf)">
+	        	IS_PTFWF=#{isPtfwf,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(ptfwfShouqufangshi)">
+	        	PTFWF_SHOUQUFANGSHI=#{ptfwfShouqufangshi,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bzjJisuanfangshi)">
+	        	BZJ_JISUANFANGSHI=#{bzjJisuanfangshi,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isZbkzj)">
+	        	IS_ZBKZJ=#{isZbkzj,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(kaibiaoXingshi)">
+	        	KAIBIAO_XINGSHI=#{kaibiaoXingshi,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(pingbiaoXingshi)">
+	        	PINGBIAO_XINGSHI=#{pingbiaoXingshi,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bzjJineBili)">
+	        	BZJ_JINE_BILI=#{bzjJineBili,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(ptfwfJine)">
+	        	PTFWF_JINE=#{ptfwfJine,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isQingdanwenjian)">
+	        	IS_QINGDANWENJIAN=#{isQingdanwenjian,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(zbwjFabutime)">
+	        	ZBWJ_FABUTIME=#{zbwjFabutime,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(yswjIssell)">
+	        	YSWJ_ISSELL=#{yswjIssell,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(yswjbsJine)">
+	        	YSWJBS_JINE=#{yswjbsJine,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(zbwjIssell)">
+	        	ZBWJ_ISSELL=#{zbwjIssell,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(zbwjbsJine)">
+	        	ZBWJBS_JINE=#{zbwjbsJine,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isTuzhiwenjian)">
+	        	IS_TUZHIWENJIAN=#{isTuzhiwenjian,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(yajinjine)">
+	        	YAJINJINE=#{yajinjine,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bdContent)">
+	        	BD_CONTENT=#{bdContent,jdbcType=CLOB},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(dayLimit)">
+	        	DAY_LIMIT=#{dayLimit,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(jiansheaddress)">
+	        	JIANSHEADDRESS=#{jiansheaddress,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(transporttype)">
+	        	TRANSPORTTYPE=#{transporttype,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(arrivestation)">
+	        	ARRIVESTATION=#{arrivestation,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(paytype)">
+	        	PAYTYPE=#{paytype,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(deliverydate)">
+	        	DELIVERYDATE=#{deliverydate,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(delivertype)">
+	        	DELIVERTYPE=#{delivertype,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(deliveraddress)">
+	        	DELIVERADDRESS=#{deliveraddress,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(filetoaddress)">
+	        	FILETOADDRESS=#{filetoaddress,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(coverArea)">
+	        	COVER_AREA=#{coverArea,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(structLayer)">
+	        	STRUCT_LAYER=#{structLayer,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(structFloor)">
+	        	STRUCT_FLOOR=#{structFloor,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(bzjJiaonafangshi)">
+	        	BZJ_JIAONAFANGSHI=#{bzjJiaonafangshi,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(kbPlace)">
+	        	KB_PLACE=#{kbPlace,jdbcType=CLOB},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(yskbPlace)">
+	        	YSKB_PLACE=#{yskbPlace,jdbcType=CLOB},
+	        </if>
+		</set>
+		WHERE
+		BD_GUID=#{bdGuid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.zbgcbd.model.ZBGongChengBD">
+        select <include refid="columns"/> from ZB_GC_BD where BD_GUID=#{bdGuid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  ZB_GC_BD where BD_GUID=#{bdGuid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from ZB_GC_BD 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="ZBGongChengBD">
+        select <include refid="columns"/> from ZB_GC_BD 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by BD_GUID  desc
+		</if>
+    </select>
+</mapper>

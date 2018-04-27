@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.zbgcuser.dao.ZBGcUserDao" >
+    <resultMap id="ZBGcUser" type="tk.ljyuan71.permissions.zbgcuser.model.ZBGcUser">
+		<id property="gcUserGuid" column="GC_USER_GUID" jdbcType="VARCHAR"/>
+		<result property="gcGuid" column="GC_GUID" jdbcType="VARCHAR"/>
+		<result property="userGuid" column="USER_GUID" jdbcType="VARCHAR"/>
+		<result property="createTime" column="CREATE_TIME" jdbcType="CLOB"/>
+		<result property="creatorGuid" column="CREATOR_GUID" jdbcType="VARCHAR"/>
+		<result property="isDeleted" column="IS_DELETED" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		GC_USER_GUID,GC_GUID,USER_GUID,CREATE_TIME,CREATOR_GUID,IS_DELETED
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(gcUserGuid)"> AND instr(GC_USER_GUID,'${gcUserGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcUserGuidEquals)"> AND GC_USER_GUID  =#{gcUserGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcGuid)"> AND instr(GC_GUID,'${gcGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcGuidEquals)"> AND GC_GUID  =#{gcGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(userGuid)"> AND instr(USER_GUID,'${userGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(userGuidEquals)"> AND USER_GUID  =#{userGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND instr(CREATE_TIME,'${createTime}')>0  </if>
+			<if test="@Ognl@isNotEmpty(createTimeEquals)"> AND CREATE_TIME  =#{createTimeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(creatorGuid)"> AND instr(CREATOR_GUID,'${creatorGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(creatorGuidEquals)"> AND CREATOR_GUID  =#{creatorGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND IS_DELETED  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(GC_USER_GUID,'${search}')>0    or 
+							instr(GC_GUID,'${search}')>0    or 
+							instr(USER_GUID,'${search}')>0    or 
+							instr(CREATE_TIME,'${search}')>0    or 
+							instr(CREATOR_GUID,'${search}')>0    or 
+							instr(IS_DELETED,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.zbgcuser.model.ZBGcUser">
+        insert into ZB_GC_USER
+		(<include refid="columns"/>)
+		values
+		(
+			#{gcUserGuid,jdbcType=VARCHAR}, 
+			#{gcGuid,jdbcType=VARCHAR}, 
+			#{userGuid,jdbcType=VARCHAR}, 
+			#{createTime,jdbcType=CLOB}, 
+			#{creatorGuid,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=NUMERIC}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.zbgcuser.model.ZBGcUser">
+		update ZB_GC_USER set
+		GC_USER_GUID=#{gcUserGuid,jdbcType=VARCHAR},
+		GC_GUID=#{gcGuid,jdbcType=VARCHAR},
+		USER_GUID=#{userGuid,jdbcType=VARCHAR},
+		CREATE_TIME=#{createTime,jdbcType=CLOB},
+		CREATOR_GUID=#{creatorGuid,jdbcType=VARCHAR},
+		IS_DELETED=#{isDeleted,jdbcType=NUMERIC}
+		WHERE
+		GC_USER_GUID=#{gcUserGuid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.zbgcuser.model.ZBGcUser">
+        select <include refid="columns"/> from ZB_GC_USER where GC_USER_GUID=#{gcUserGuid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  ZB_GC_USER where GC_USER_GUID=#{gcUserGuid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from ZB_GC_USER 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="ZBGcUser">
+        select <include refid="columns"/> from ZB_GC_USER 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by GC_USER_GUID  desc
+		</if>
+    </select>
+</mapper>

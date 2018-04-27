@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.templateentity.dao.TemplateEntityDao" >
+    <resultMap id="TemplateEntity" type="tk.ljyuan71.permissions.templateentity.model.TemplateEntity">
+		<id property="guid" column="guid" jdbcType="VARCHAR"/>
+		<result property="entityFullPath" column="entity_full_path" jdbcType="VARCHAR"/>
+		<result property="entityComment" column="entity_comment" jdbcType="VARCHAR"/>
+		<result property="isDeleted" column="is_deleted" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		guid,entity_full_path,entity_comment,is_deleted
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(guid)"> AND instr(guid,'${guid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(guidEquals)"> AND guid  =#{guidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(entityFullPath)"> AND instr(entity_full_path,'${entityFullPath}')>0  </if>
+			<if test="@Ognl@isNotEmpty(entityFullPathEquals)"> AND entity_full_path  =#{entityFullPathEquals}  </if>
+			<if test="@Ognl@isNotEmpty(entityComment)"> AND instr(entity_comment,'${entityComment}')>0  </if>
+			<if test="@Ognl@isNotEmpty(entityCommentEquals)"> AND entity_comment  =#{entityCommentEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND is_deleted  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(guid,'${search}')>0    or 
+							instr(entity_full_path,'${search}')>0    or 
+							instr(entity_comment,'${search}')>0    or 
+							instr(is_deleted,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.templateentity.model.TemplateEntity">
+        insert into TEMPLATE_ENTITY
+		(<include refid="columns"/>)
+		values
+		(
+			#{guid,jdbcType=VARCHAR}, 
+			#{entityFullPath,jdbcType=VARCHAR}, 
+			#{entityComment,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=NUMERIC}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.templateentity.model.TemplateEntity">
+		update TEMPLATE_ENTITY 
+		<set>
+	        <if test="@Ognl@isNotEmpty(entityFullPath)">
+	        	entity_full_path=#{entityFullPath,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(entityComment)">
+	        	entity_comment=#{entityComment,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isDeleted)">
+	        	is_deleted=#{isDeleted,jdbcType=NUMERIC},
+	        </if>
+		</set>
+		WHERE
+		guid=#{guid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.templateentity.model.TemplateEntity">
+        select <include refid="columns"/> from TEMPLATE_ENTITY where guid=#{guid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  TEMPLATE_ENTITY where guid=#{guid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from TEMPLATE_ENTITY 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="TemplateEntity">
+        select <include refid="columns"/> from TEMPLATE_ENTITY 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by guid  desc
+		</if>
+    </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.templateinfo.dao.TemplateInfoDao" >
+    <resultMap id="TemplateInfo" type="tk.ljyuan71.permissions.templateinfo.model.TemplateInfo">
+		<id property="guid" column="guid" jdbcType="VARCHAR"/>
+		<result property="templateName" column="template_name" jdbcType="VARCHAR"/>
+		<result property="matterId" column="matter_id" jdbcType="VARCHAR"/>
+		<result property="templateContent" column="template_content" jdbcType="VARCHAR"/>
+		<result property="isDeleted" column="is_deleted" jdbcType="NUMERIC"/>
+		<association property="matter" column="matter_id" 
+			javaType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter" 
+			select="tk.ljyuan71.permissions.templatematter.dao.TemplateMatterDao.getById">
+    	</association>
+	</resultMap>
+	<sql id="columns">
+		guid,template_name,matter_id,template_content,is_deleted
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(guid)"> AND instr(guid,'${guid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(guidEquals)"> AND guid  =#{guidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(templateName)"> AND instr(template_name,'${templateName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(templateNameEquals)"> AND template_name  =#{templateNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(matterId)"> AND instr(matter_id,'${matterId}')>0  </if>
+			<if test="@Ognl@isNotEmpty(matterIdEquals)"> AND matter_id  =#{matterIdEquals}  </if>
+			<if test="@Ognl@isNotEmpty(templateContent)"> AND instr(template_content,'${templateContent}')>0  </if>
+			<if test="@Ognl@isNotEmpty(templateContentEquals)"> AND template_content  =#{templateContentEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND is_deleted  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(guid,'${search}')>0    or 
+							instr(template_name,'${search}')>0    or 
+							instr(matter_id,'${search}')>0    or 
+							instr(template_content,'${search}')>0    or 
+							instr(is_deleted,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.templateinfo.model.TemplateInfo">
+        insert into TEMPLATE_INFO
+		(<include refid="columns"/>)
+		values
+		(
+			#{guid,jdbcType=VARCHAR}, 
+			#{templateName,jdbcType=VARCHAR}, 
+			#{matterId,jdbcType=VARCHAR}, 
+			#{templateContent,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=NUMERIC}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.templateinfo.model.TemplateInfo">
+		update TEMPLATE_INFO 
+		<set>
+	        <if test="@Ognl@isNotEmpty(templateName)">
+	        	template_name=#{templateName,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(matterId)">
+	        	matter_id=#{matterId,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(templateContent)">
+	        	template_content=#{templateContent,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isDeleted)">
+	        	is_deleted=#{isDeleted,jdbcType=NUMERIC},
+	        </if>
+		</set>
+		WHERE
+		guid=#{guid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.templateinfo.model.TemplateInfo">
+        select <include refid="columns"/> from TEMPLATE_INFO where guid=#{guid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  TEMPLATE_INFO where guid=#{guid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from TEMPLATE_INFO 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="TemplateInfo">
+        select <include refid="columns"/> from TEMPLATE_INFO 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by guid  desc
+		</if>
+    </select>
+</mapper>

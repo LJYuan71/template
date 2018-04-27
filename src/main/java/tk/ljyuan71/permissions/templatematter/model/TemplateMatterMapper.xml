@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.templatematter.dao.TemplateMatterDao" >
+    <resultMap id="TemplateMatter" type="tk.ljyuan71.permissions.templatematter.model.TemplateMatter">
+		<id property="guid" column="guid" jdbcType="VARCHAR"/>
+		<result property="matterName" column="matter_name" jdbcType="VARCHAR"/>
+		<result property="remark" column="remark" jdbcType="VARCHAR"/>
+		<result property="isDeleted" column="is_deleted" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		guid,matter_name,remark,is_deleted
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(guid)"> AND instr(guid,'${guid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(guidEquals)"> AND guid  =#{guidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(matterName)"> AND instr(matter_name,'${matterName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(matterNameEquals)"> AND matter_name  =#{matterNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND instr(remark,'${remark}')>0  </if>
+			<if test="@Ognl@isNotEmpty(remarkEquals)"> AND remark  =#{remarkEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND is_deleted  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(guid,'${search}')>0    or 
+							instr(matter_name,'${search}')>0    or 
+							instr(remark,'${search}')>0    or 
+							instr(is_deleted,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter">
+        insert into TEMPLATE_MATTER
+		(<include refid="columns"/>)
+		values
+		(
+			#{guid,jdbcType=VARCHAR}, 
+			#{matterName,jdbcType=VARCHAR}, 
+			#{remark,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=NUMERIC}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter">
+		update TEMPLATE_MATTER 
+		<set>
+	        <if test="@Ognl@isNotEmpty(matterName)">
+	        	matter_name=#{matterName,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(remark)">
+	        	remark=#{remark,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(isDeleted)">
+	        	is_deleted=#{isDeleted,jdbcType=NUMERIC},
+	        </if>
+		</set>
+		WHERE
+		guid=#{guid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter">
+        select <include refid="columns"/> from TEMPLATE_MATTER where guid=#{guid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  TEMPLATE_MATTER where guid=#{guid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from TEMPLATE_MATTER 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="TemplateMatter">
+        select <include refid="columns"/> from TEMPLATE_MATTER 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by guid  desc
+		</if>
+    </select>
+</mapper>

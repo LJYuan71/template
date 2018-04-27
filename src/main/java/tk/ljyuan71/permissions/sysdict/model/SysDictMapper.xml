@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.sysdict.dao.SysDictDao" >
+    <resultMap id="SysDict" type="tk.ljyuan71.permissions.sysdict.model.SysDict">
+		<id property="dictGuid" column="DICT_GUID" jdbcType="VARCHAR"/>
+		<result property="typename" column="TYPENAME" jdbcType="VARCHAR"/>
+		<result property="dictKey" column="DICT_KEY" jdbcType="VARCHAR"/>
+		<result property="dictValue" column="DICT_VALUE" jdbcType="CLOB"/>
+		<result property="sequence" column="SEQUENCE" jdbcType="NUMERIC"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+		<result property="parentGuid" column="PARENT_GUID" jdbcType="VARCHAR"/>
+		<result property="remarks" column="REMARKS" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="SimpleSysDict" type="tk.ljyuan71.permissions.sysdict.model.SysDict">
+		<result property="dictKey" column="DICT_KEY" jdbcType="VARCHAR"/>
+		<result property="dictValue" column="DICT_VALUE" jdbcType="CLOB"/>
+	</resultMap>
+	<sql id="columns">
+		DICT_GUID,TYPENAME,DICT_KEY,DICT_VALUE,SEQUENCE,STATUS,PARENT_GUID,REMARKS
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(dictGuid)"> AND instr(DICT_GUID,'${dictGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(dictGuidEquals)"> AND DICT_GUID  =#{dictGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(typename)"> AND instr(TYPENAME,'${typename}')>0  </if>
+			<if test="@Ognl@isNotEmpty(typenameEquals)"> AND TYPENAME  =#{typenameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(key)"> AND instr(DICT_KEY,'${key}')>0  </if>
+			<if test="@Ognl@isNotEmpty(keyEquals)"> AND DICT_KEY  =#{keyEquals}  </if>
+			<if test="@Ognl@isNotEmpty(value)"> AND instr(DICT_VALUE,'${value}')>0  </if>
+			<if test="@Ognl@isNotEmpty(valueEquals)"> AND DICT_VALUE  =#{valueEquals}  </if>
+			<if test="@Ognl@isNotEmpty(sequence)"> AND SEQUENCE  =#{sequence} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(parentGuid)"> AND instr(PARENT_GUID,'${parentGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(parentGuidEquals)"> AND PARENT_GUID  =#{parentGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(remarks)"> AND instr(REMARKS,'${remarks}')>0  </if>
+			<if test="@Ognl@isNotEmpty(remarksEquals)"> AND REMARKS  =#{remarksEquals}  </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(DICT_GUID,'${search}')>0    or 
+							instr(TYPENAME,'${search}')>0    or 
+							instr(DICT_KEY,'${search}')>0    or 
+							instr(DICT_VALUE,'${search}')>0    or 
+							instr(SEQUENCE,'${search}')>0    or 
+							instr(STATUS,'${search}')>0    or 
+							instr(PARENT_GUID,'${search}')>0    or 
+							instr(REMARKS,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.sysdict.model.SysDict">
+        insert into SYS_DICT
+		(<include refid="columns"/>)
+		values
+		(
+			#{dictGuid,jdbcType=VARCHAR}, 
+			#{typename,jdbcType=VARCHAR}, 
+			#{dictKey,jdbcType=VARCHAR}, 
+			#{dictValue,jdbcType=CLOB}, 
+			#{sequence,jdbcType=NUMERIC}, 
+			#{status,jdbcType=NUMERIC}, 
+			#{parentGuid,jdbcType=VARCHAR}, 
+			#{remarks,jdbcType=VARCHAR}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.sysdict.model.SysDict">
+		update SYS_DICT 
+		<set>
+	        <if test="@Ognl@isNotEmpty(typename)">
+	        	TYPENAME=#{typename,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(key)">
+	        	DICT_KEY=#{dictKey,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(value)">
+	        	DICT_VALUE=#{dictValue,jdbcType=CLOB},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(sequence)">
+	        	SEQUENCE=#{sequence,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(status)">
+	        	STATUS=#{status,jdbcType=NUMERIC},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(parentGuid)">
+	        	PARENT_GUID=#{parentGuid,jdbcType=VARCHAR},
+	        </if>
+	        <if test="@Ognl@isNotEmpty(remarks)">
+	        	REMARKS=#{remarks,jdbcType=VARCHAR},
+	        </if>
+		</set>
+		WHERE
+		DICT_GUID=#{dictGuid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.sysdict.model.SysDict">
+        select <include refid="columns"/> from SYS_DICT where DICT_GUID=#{dictGuid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  SYS_DICT where DICT_GUID=#{dictGuid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from SYS_DICT 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="SysDict">
+        select <include refid="columns"/> from SYS_DICT 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by DICT_GUID  desc
+		</if>
+    </select>
+    
+    <select id="queryAllSimple"  resultMap="SimpleSysDict">
+        select DICT_KEY,DICT_VALUE from SYS_DICT 
+        <where>
+			<if test="@Ognl@isNotEmpty(typenameEquals)"> AND TYPENAME  =#{typenameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(keys)"> AND DICT_KEY in  
+			<foreach collection="keys" index="index" item="item" open="(" separator="," close=")">  
+		        #{item}  
+		    </foreach> 
+		    </if>
+			<if test="@Ognl@isNotEmpty(keyEquals)"> AND DICT_KEY  =#{keyEquals}  </if>
+			<if test="@Ognl@isNotEmpty(values)"> AND DICT_VALUE in
+			<foreach collection="values" index="index" item="item" open="(" separator="," close=")">  
+		        #{item}  
+		    </foreach> 
+			</if>
+			<if test="@Ognl@isNotEmpty(valueEquals)"> AND DICT_VALUE  =#{valueEquals}  </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(parentGuidEquals)"> AND PARENT_GUID  =#{parentGuidEquals}  </if>
+        </where>
+		order by sequence 
+    </select>
+</mapper>

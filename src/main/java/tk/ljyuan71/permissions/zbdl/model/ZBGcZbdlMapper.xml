@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.zbdl.dao.ZBGcZbdlDao" >
+    <resultMap id="ZBGcZbdl" type="tk.ljyuan71.permissions.zbdl.model.ZBGcZbdl">
+		<id property="gcZbdlGuid" column="GC_ZBDL_GUID" jdbcType="VARCHAR"/>
+		<result property="gcGuid" column="GC_GUID" jdbcType="VARCHAR"/>
+		<result property="shixiangGuid" column="SHIXIANG_GUID" jdbcType="VARCHAR"/>
+		<result property="zbdlGuid" column="ZBDL_GUID" jdbcType="VARCHAR"/>
+		<result property="zbdlBh" column="ZBDL_BH" jdbcType="VARCHAR"/>
+		<result property="zbdlName" column="ZBDL_NAME" jdbcType="VARCHAR"/>
+		<result property="zbdlZizhiDengji" column="ZBDL_ZIZHI_DENGJI" jdbcType="VARCHAR"/>
+		<result property="zbdlZizhiZhengshuBh" column="ZBDL_ZIZHI_ZHENGSHU_BH" jdbcType="VARCHAR"/>
+		<result property="zbdlFuzerenName" column="ZBDL_FUZEREN_NAME" jdbcType="VARCHAR"/>
+		<result property="zbdlFuzerenZhiwu" column="ZBDL_FUZEREN_ZHIWU" jdbcType="VARCHAR"/>
+		<result property="zbdlZbFuzerenName" column="ZBDL_ZB_FUZEREN_NAME" jdbcType="VARCHAR"/>
+		<result property="zbdlZbFuzerenPhone" column="ZBDL_ZB_FUZEREN_PHONE" jdbcType="VARCHAR"/>
+		<result property="zbdlZbFuzerenMobile" column="ZBDL_ZB_FUZEREN_MOBILE" jdbcType="VARCHAR"/>
+		<result property="zbdlZbFuzerenEmail" column="ZBDL_ZB_FUZEREN_EMAIL" jdbcType="VARCHAR"/>
+		<result property="zbdlJinbanrenName" column="ZBDL_JINBANREN_NAME" jdbcType="VARCHAR"/>
+		<result property="zbdlJinbanrenMobile" column="ZBDL_JINBANREN_MOBILE" jdbcType="VARCHAR"/>
+		<result property="zbdlJinbanrenEmail" column="ZBDL_JINBANREN_EMAIL" jdbcType="VARCHAR"/>
+		<result property="zbdlJinbanrenPhone" column="ZBDL_JINBANREN_PHONE" jdbcType="VARCHAR"/>
+		<result property="xiugaiCishu" column="XIUGAI_CISHU" jdbcType="NUMERIC"/>
+		<result property="isDeleted" column="IS_DELETED" jdbcType="NUMERIC"/>
+		<result property="isDoudiXinzeng" column="IS_DOUDI_XINZENG" jdbcType="NUMERIC"/>
+		<result property="isDoudiXiugai" column="IS_DOUDI_XIUGAI" jdbcType="NUMERIC"/>
+		<result property="modifyTime" column="MODIFY_TIME" jdbcType="NUMERIC"/>
+		<result property="zbdlQuanxian" column="ZBDL_QUANXIAN" jdbcType="VARCHAR"/>
+		<result property="zbdlAddress" column="ZBDL_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="zbdlPostcode" column="ZBDL_POSTCODE" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		GC_ZBDL_GUID,GC_GUID,SHIXIANG_GUID,ZBDL_GUID,ZBDL_BH,ZBDL_NAME,ZBDL_ZIZHI_DENGJI,ZBDL_ZIZHI_ZHENGSHU_BH,ZBDL_FUZEREN_NAME,ZBDL_FUZEREN_ZHIWU,ZBDL_ZB_FUZEREN_NAME,ZBDL_ZB_FUZEREN_PHONE,ZBDL_ZB_FUZEREN_MOBILE,ZBDL_ZB_FUZEREN_EMAIL,ZBDL_JINBANREN_NAME,ZBDL_JINBANREN_MOBILE,ZBDL_JINBANREN_EMAIL,ZBDL_JINBANREN_PHONE,XIUGAI_CISHU,IS_DELETED,IS_DOUDI_XINZENG,IS_DOUDI_XIUGAI,MODIFY_TIME,ZBDL_QUANXIAN,ZBDL_ADDRESS,ZBDL_POSTCODE
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(gcZbdlGuid)"> AND instr(GC_ZBDL_GUID,'${gcZbdlGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcZbdlGuidEquals)"> AND GC_ZBDL_GUID  =#{gcZbdlGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcGuid)"> AND instr(GC_GUID,'${gcGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcGuidEquals)"> AND GC_GUID  =#{gcGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shixiangGuid)"> AND instr(SHIXIANG_GUID,'${shixiangGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(shixiangGuidEquals)"> AND SHIXIANG_GUID  =#{shixiangGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlGuid)"> AND instr(ZBDL_GUID,'${zbdlGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlGuidEquals)"> AND ZBDL_GUID  =#{zbdlGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlBh)"> AND instr(ZBDL_BH,'${zbdlBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlBhEquals)"> AND ZBDL_BH  =#{zbdlBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlName)"> AND instr(ZBDL_NAME,'${zbdlName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlNameEquals)"> AND ZBDL_NAME  =#{zbdlNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZizhiDengji)"> AND instr(ZBDL_ZIZHI_DENGJI,'${zbdlZizhiDengji}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZizhiDengjiEquals)"> AND ZBDL_ZIZHI_DENGJI  =#{zbdlZizhiDengjiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZizhiZhengshuBh)"> AND instr(ZBDL_ZIZHI_ZHENGSHU_BH,'${zbdlZizhiZhengshuBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZizhiZhengshuBhEquals)"> AND ZBDL_ZIZHI_ZHENGSHU_BH  =#{zbdlZizhiZhengshuBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlFuzerenName)"> AND instr(ZBDL_FUZEREN_NAME,'${zbdlFuzerenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlFuzerenNameEquals)"> AND ZBDL_FUZEREN_NAME  =#{zbdlFuzerenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlFuzerenZhiwu)"> AND instr(ZBDL_FUZEREN_ZHIWU,'${zbdlFuzerenZhiwu}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlFuzerenZhiwuEquals)"> AND ZBDL_FUZEREN_ZHIWU  =#{zbdlFuzerenZhiwuEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenName)"> AND instr(ZBDL_ZB_FUZEREN_NAME,'${zbdlZbFuzerenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenNameEquals)"> AND ZBDL_ZB_FUZEREN_NAME  =#{zbdlZbFuzerenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenPhone)"> AND instr(ZBDL_ZB_FUZEREN_PHONE,'${zbdlZbFuzerenPhone}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenPhoneEquals)"> AND ZBDL_ZB_FUZEREN_PHONE  =#{zbdlZbFuzerenPhoneEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenMobile)"> AND instr(ZBDL_ZB_FUZEREN_MOBILE,'${zbdlZbFuzerenMobile}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenMobileEquals)"> AND ZBDL_ZB_FUZEREN_MOBILE  =#{zbdlZbFuzerenMobileEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenEmail)"> AND instr(ZBDL_ZB_FUZEREN_EMAIL,'${zbdlZbFuzerenEmail}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlZbFuzerenEmailEquals)"> AND ZBDL_ZB_FUZEREN_EMAIL  =#{zbdlZbFuzerenEmailEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenName)"> AND instr(ZBDL_JINBANREN_NAME,'${zbdlJinbanrenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenNameEquals)"> AND ZBDL_JINBANREN_NAME  =#{zbdlJinbanrenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenMobile)"> AND instr(ZBDL_JINBANREN_MOBILE,'${zbdlJinbanrenMobile}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenMobileEquals)"> AND ZBDL_JINBANREN_MOBILE  =#{zbdlJinbanrenMobileEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenEmail)"> AND instr(ZBDL_JINBANREN_EMAIL,'${zbdlJinbanrenEmail}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenEmailEquals)"> AND ZBDL_JINBANREN_EMAIL  =#{zbdlJinbanrenEmailEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenPhone)"> AND instr(ZBDL_JINBANREN_PHONE,'${zbdlJinbanrenPhone}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlJinbanrenPhoneEquals)"> AND ZBDL_JINBANREN_PHONE  =#{zbdlJinbanrenPhoneEquals}  </if>
+			<if test="@Ognl@isNotEmpty(xiugaiCishu)"> AND XIUGAI_CISHU  =#{xiugaiCishu} </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND IS_DELETED  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(isDoudiXinzeng)"> AND IS_DOUDI_XINZENG  =#{isDoudiXinzeng} </if>
+			<if test="@Ognl@isNotEmpty(isDoudiXiugai)"> AND IS_DOUDI_XIUGAI  =#{isDoudiXiugai} </if>
+			<if test="@Ognl@isNotEmpty(modifyTime)"> AND MODIFY_TIME  =#{modifyTime} </if>
+			<if test="@Ognl@isNotEmpty(zbdlQuanxian)"> AND instr(ZBDL_QUANXIAN,'${zbdlQuanxian}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlQuanxianEquals)"> AND ZBDL_QUANXIAN  =#{zbdlQuanxianEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlAddress)"> AND instr(ZBDL_ADDRESS,'${zbdlAddress}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlAddressEquals)"> AND ZBDL_ADDRESS  =#{zbdlAddressEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlPostcode)"> AND instr(ZBDL_POSTCODE,'${zbdlPostcode}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlPostcodeEquals)"> AND ZBDL_POSTCODE  =#{zbdlPostcodeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(GC_ZBDL_GUID,'${search}')>0    or 
+							instr(GC_GUID,'${search}')>0    or 
+							instr(SHIXIANG_GUID,'${search}')>0    or 
+							instr(ZBDL_GUID,'${search}')>0    or 
+							instr(ZBDL_BH,'${search}')>0    or 
+							instr(ZBDL_NAME,'${search}')>0    or 
+							instr(ZBDL_ZIZHI_DENGJI,'${search}')>0    or 
+							instr(ZBDL_ZIZHI_ZHENGSHU_BH,'${search}')>0    or 
+							instr(ZBDL_FUZEREN_NAME,'${search}')>0    or 
+							instr(ZBDL_FUZEREN_ZHIWU,'${search}')>0    or 
+							instr(ZBDL_ZB_FUZEREN_NAME,'${search}')>0    or 
+							instr(ZBDL_ZB_FUZEREN_PHONE,'${search}')>0    or 
+							instr(ZBDL_ZB_FUZEREN_MOBILE,'${search}')>0    or 
+							instr(ZBDL_ZB_FUZEREN_EMAIL,'${search}')>0    or 
+							instr(ZBDL_JINBANREN_NAME,'${search}')>0    or 
+							instr(ZBDL_JINBANREN_MOBILE,'${search}')>0    or 
+							instr(ZBDL_JINBANREN_EMAIL,'${search}')>0    or 
+							instr(ZBDL_JINBANREN_PHONE,'${search}')>0    or 
+							instr(XIUGAI_CISHU,'${search}')>0    or 
+							instr(IS_DELETED,'${search}')>0    or 
+							instr(IS_DOUDI_XINZENG,'${search}')>0    or 
+							instr(IS_DOUDI_XIUGAI,'${search}')>0    or 
+							instr(MODIFY_TIME,'${search}')>0    or 
+							instr(ZBDL_QUANXIAN,'${search}')>0    or 
+							instr(ZBDL_ADDRESS,'${search}')>0    or 
+							instr(ZBDL_POSTCODE,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.zbdl.model.ZBGcZbdl">
+        insert into ZB_GC_ZBDL
+		(<include refid="columns"/>)
+		values
+		(
+			#{gcZbdlGuid,jdbcType=VARCHAR}, 
+			#{gcGuid,jdbcType=VARCHAR}, 
+			#{shixiangGuid,jdbcType=VARCHAR}, 
+			#{zbdlGuid,jdbcType=VARCHAR}, 
+			#{zbdlBh,jdbcType=VARCHAR}, 
+			#{zbdlName,jdbcType=VARCHAR}, 
+			#{zbdlZizhiDengji,jdbcType=VARCHAR}, 
+			#{zbdlZizhiZhengshuBh,jdbcType=VARCHAR}, 
+			#{zbdlFuzerenName,jdbcType=VARCHAR}, 
+			#{zbdlFuzerenZhiwu,jdbcType=VARCHAR}, 
+			#{zbdlZbFuzerenName,jdbcType=VARCHAR}, 
+			#{zbdlZbFuzerenPhone,jdbcType=VARCHAR}, 
+			#{zbdlZbFuzerenMobile,jdbcType=VARCHAR}, 
+			#{zbdlZbFuzerenEmail,jdbcType=VARCHAR}, 
+			#{zbdlJinbanrenName,jdbcType=VARCHAR}, 
+			#{zbdlJinbanrenMobile,jdbcType=VARCHAR}, 
+			#{zbdlJinbanrenEmail,jdbcType=VARCHAR}, 
+			#{zbdlJinbanrenPhone,jdbcType=VARCHAR}, 
+			#{xiugaiCishu,jdbcType=NUMERIC}, 
+			#{isDeleted,jdbcType=NUMERIC}, 
+			#{isDoudiXinzeng,jdbcType=NUMERIC}, 
+			#{isDoudiXiugai,jdbcType=NUMERIC}, 
+			#{modifyTime,jdbcType=NUMERIC}, 
+			#{zbdlQuanxian,jdbcType=VARCHAR}, 
+			#{zbdlAddress,jdbcType=VARCHAR}, 
+			#{zbdlPostcode,jdbcType=VARCHAR}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.zbdl.model.ZBGcZbdl">
+		update ZB_GC_ZBDL set
+		GC_ZBDL_GUID=#{gcZbdlGuid,jdbcType=VARCHAR},
+		GC_GUID=#{gcGuid,jdbcType=VARCHAR},
+		SHIXIANG_GUID=#{shixiangGuid,jdbcType=VARCHAR},
+		ZBDL_GUID=#{zbdlGuid,jdbcType=VARCHAR},
+		ZBDL_BH=#{zbdlBh,jdbcType=VARCHAR},
+		ZBDL_NAME=#{zbdlName,jdbcType=VARCHAR},
+		ZBDL_ZIZHI_DENGJI=#{zbdlZizhiDengji,jdbcType=VARCHAR},
+		ZBDL_ZIZHI_ZHENGSHU_BH=#{zbdlZizhiZhengshuBh,jdbcType=VARCHAR},
+		ZBDL_FUZEREN_NAME=#{zbdlFuzerenName,jdbcType=VARCHAR},
+		ZBDL_FUZEREN_ZHIWU=#{zbdlFuzerenZhiwu,jdbcType=VARCHAR},
+		ZBDL_ZB_FUZEREN_NAME=#{zbdlZbFuzerenName,jdbcType=VARCHAR},
+		ZBDL_ZB_FUZEREN_PHONE=#{zbdlZbFuzerenPhone,jdbcType=VARCHAR},
+		ZBDL_ZB_FUZEREN_MOBILE=#{zbdlZbFuzerenMobile,jdbcType=VARCHAR},
+		ZBDL_ZB_FUZEREN_EMAIL=#{zbdlZbFuzerenEmail,jdbcType=VARCHAR},
+		ZBDL_JINBANREN_NAME=#{zbdlJinbanrenName,jdbcType=VARCHAR},
+		ZBDL_JINBANREN_MOBILE=#{zbdlJinbanrenMobile,jdbcType=VARCHAR},
+		ZBDL_JINBANREN_EMAIL=#{zbdlJinbanrenEmail,jdbcType=VARCHAR},
+		ZBDL_JINBANREN_PHONE=#{zbdlJinbanrenPhone,jdbcType=VARCHAR},
+		XIUGAI_CISHU=#{xiugaiCishu,jdbcType=NUMERIC},
+		IS_DELETED=#{isDeleted,jdbcType=NUMERIC},
+		IS_DOUDI_XINZENG=#{isDoudiXinzeng,jdbcType=NUMERIC},
+		IS_DOUDI_XIUGAI=#{isDoudiXiugai,jdbcType=NUMERIC},
+		MODIFY_TIME=#{modifyTime,jdbcType=NUMERIC},
+		ZBDL_QUANXIAN=#{zbdlQuanxian,jdbcType=VARCHAR},
+		ZBDL_ADDRESS=#{zbdlAddress,jdbcType=VARCHAR},
+		ZBDL_POSTCODE=#{zbdlPostcode,jdbcType=VARCHAR}
+		WHERE
+		GC_ZBDL_GUID=#{gcZbdlGuid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.zbdl.model.ZBGcZbdl">
+        select <include refid="columns"/> from ZB_GC_ZBDL where GC_ZBDL_GUID=#{gcZbdlGuid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  ZB_GC_ZBDL where GC_ZBDL_GUID=#{gcZbdlGuid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from ZB_GC_ZBDL 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="ZBGcZbdl">
+        select <include refid="columns"/> from ZB_GC_ZBDL 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by GC_ZBDL_GUID  desc
+		</if>
+    </select>
+</mapper>

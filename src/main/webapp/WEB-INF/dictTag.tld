@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd"> 
+<taglib>
+    <description>自定义标签dict标签</description>
+    <display-name>dict</display-name>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version> 
+    <short-name>dict</short-name>
+	<uri>http://www.ljyuan71.tk</uri> 
+	
+    <tag>
+     	<!-- 这个tag的名字，关系到jsp页面的引用 <dict:select> --> 
+        <name>dict</name>
+        <tag-class>tk.ljyuan71.permissions.jsptag.DictTag</tag-class>
+         <!--body-content有三个可选值  
+         1."jsp"     表示标签体由其他jsp元素组成   
+                      如果其有jsp元素，那么标签会先解释，然后将元素的实际值传入。  
+                      比如标签体里含有<%=attributeName%>这样子的jsp元素，  
+                      此时标签会按attributeName的实际值是什么就传入什么。这个是最常用的一个。  
+         2."empty"   标签体必须为空     
+                       在引用这个Tag的时候，可以<dict:select id="attributeName" />，  
+                       而不必<dict:select id="attributeName" ></dict:select>   
+         3."tagdependent" 由标签解释，不带jsp转换 -->  
+        <body-content>jsp</body-content>
+        <!-- select/radio/checkbox唯一标识(必选) -->
+        <attribute>
+            <name>typename</name>
+            <!-- 这个参数是否是必填项， 如果为true则必须写这个参数，否则会报错 --> 
+            <required>true</required>
+            <!-- 是说这个标签的值是否可以动态赋值，如value="<%=attributeName%>" -->  
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-默认select -->
+        <attribute>
+            <name>dictType</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-name -->
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select第一个option -->
+        <attribute>
+            <name>header</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select-默认选中 -->
+        <attribute>
+            <name>selected</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+         <!-- radio/checkbox-checked -->
+        <attribute>
+            <name>checked</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-disabled -->
+        <attribute>
+            <name>disabled</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- select-multiple -->
+        <attribute>
+            <name>multiple</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select-required -->
+        <attribute>
+            <name>required</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select-size -->
+        <attribute>
+            <name>size</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-id -->
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-style -->
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-title -->
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-class -->
+        <attribute>
+            <name>tagClass</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onblur -->
+        <attribute>
+            <name>onblur</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onchange -->
+        <attribute>
+            <name>onchange</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onblur -->
+        <attribute>
+            <name>onblur</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onkeyup -->
+        <attribute>
+            <name>onkeyup</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onclick -->
+        <attribute>
+            <name>onclick</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <!-- select/radio/checkbox-onselect -->
+        <attribute>
+            <name>onselect</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

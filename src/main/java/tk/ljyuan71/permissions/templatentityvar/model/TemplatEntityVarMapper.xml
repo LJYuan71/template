@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.templatentityvar.dao.TemplatEntityVarDao" >
+    <resultMap id="templatEntityVar" type="tk.ljyuan71.permissions.templatentityvar.model.TemplatEntityVar">
+		<id property="guid" column="guid" jdbcType="VARCHAR"/>
+		<result property="matterId" column="matter_Id" jdbcType="VARCHAR"/>
+		<result property="entityId" column="entity_Id" jdbcType="VARCHAR"/>
+		<result property="attrName" column="attr_Name" jdbcType="VARCHAR"/>
+		<result property="attrComment" column="attr_Comment" jdbcType="VARCHAR"/>
+		<result property="defaultVar" column="default_Var" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="VARCHAR"/>
+		<result property="typeStyle" column="type_Style" jdbcType="VARCHAR"/>
+		<result property="isDeleted" column="is_Deleted" jdbcType="NUMERIC"/>
+		<association property="templateEntity" column="entity_Id" 
+			javaType="tk.ljyuan71.permissions.templateentity.model.TemplateEntity" 
+			select="tk.ljyuan71.permissions.templateentity.dao.TemplateEntityDao.getById">
+    	</association>
+    	<association property="matter" column="matter_Id" 
+    		javaType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter" select="getTemplateMatter">
+    	</association>
+	</resultMap>
+	<sql id="columns">
+		guid,matter_Id,entity_Id,attr_Name,attr_Comment,default_Var,type,type_Style,is_Deleted
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			is_Deleted = 0
+			<if test="@Ognl@isNotEmpty(guid)"> AND instr(guid,'${guid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(guidEquals)"> AND guid  =#{guidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(matterId)"> AND instr(matter_Id,'${matterId}')>0  </if>
+			<if test="@Ognl@isNotEmpty(matterIdEquals)"> AND matter_Id  =#{matterIdEquals}  </if>
+			<if test="@Ognl@isNotEmpty(entityId)"> AND instr(entity_Id,'${entityId}')>0  </if>
+			<if test="@Ognl@isNotEmpty(entityIdEquals)"> AND entity_Id  =#{entityIdEquals}  </if>
+			<if test="@Ognl@isNotEmpty(attrName)"> AND instr(attr_Name,'${attrName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(attrNameEquals)"> AND attr_Name  =#{attrNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(attrComment)"> AND instr(attr_Comment,'${attrComment}')>0  </if>
+			<if test="@Ognl@isNotEmpty(attrCommentEquals)"> AND attr_Comment  =#{attrCommentEquals}  </if>
+			<if test="@Ognl@isNotEmpty(defaultVar)"> AND instr(default_Var,'${defaultVar}')>0  </if>
+			<if test="@Ognl@isNotEmpty(defaultVarEquals)"> AND default_Var  =#{defaultVarEquals}  </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND instr(type,'${type}')>0  </if>
+			<if test="@Ognl@isNotEmpty(typeEquals)"> AND type  =#{typeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(typeStyle)"> AND instr(type_Style,'${typeStyle}')>0  </if>
+			<if test="@Ognl@isNotEmpty(typeStyleEquals)"> AND type_Style  =#{typeStyleEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND is_Deleted  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(entityFullPath)"> 
+				AND exists (select 1 from TEMPLATE_ENTITY t where t.guid = entity_Id and entity_full_path =#{entityFullPath}) 
+			</if>
+			<if test="@Ognl@isNotEmpty(attrNames)">
+				and attr_Comment in 
+				<foreach collection="attrNames" item="item" open="(" separator="," close=")">
+					#{item} 
+				</foreach>
+			</if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(guid,'${search}')>0    or 
+							instr(matter_Id,'${search}')>0    or 
+							instr(entity_Id,'${search}')>0    or 
+							instr(attr_Name,'${search}')>0    or 
+							instr(attr_Comment,'${search}')>0    or 
+							instr(default_Var,'${search}')>0    or 
+							instr(type,'${search}')>0    or 
+							instr(type_Style,'${search}')>0    or 
+							instr(is_Deleted,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.templatentityvar.model.TemplatEntityVar">
+        insert into TEMPLAT_ENTITY_VAR
+		(<include refid="columns"/>)
+		values
+		(
+			#{guid,jdbcType=VARCHAR}, 
+			#{matterId,jdbcType=VARCHAR}, 
+			#{entityId,jdbcType=VARCHAR}, 
+			#{attrName,jdbcType=VARCHAR}, 
+			#{attrComment,jdbcType=VARCHAR}, 
+			#{defaultVar,jdbcType=VARCHAR}, 
+			#{type,jdbcType=VARCHAR}, 
+			#{typeStyle,jdbcType=VARCHAR}, 
+			#{isDeleted,jdbcType=NUMERIC}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.templatentityvar.model.TemplatEntityVar">
+		update TEMPLAT_ENTITY_VAR 
+		<set>
+			<if test="@Ognl@isNotEmpty(matterId)">
+				matter_Id=#{matterId,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(entityId)">
+			entity_Id=#{entityId,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(attrName)">
+			attr_Name=#{attrName,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(attrComment)">
+			attr_Comment=#{attrComment,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(defaultVar)">
+			default_Var=#{defaultVar,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(type)">
+			type=#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(typeStyle)">
+			type_Style=#{typeStyle,jdbcType=VARCHAR},
+			</if>
+			<if test="@Ognl@isNotEmpty(isDeleted)">
+			is_Deleted=#{isDeleted,jdbcType=NUMERIC},
+			</if>
+		</set>
+		WHERE
+		guid=#{guid}
+	</update>
+	<select id="getById" parameterType="String" resultMap="templatEntityVar">
+        select <include refid="columns"/> from TEMPLAT_ENTITY_VAR where guid=#{guid}
+    </select>
+    <!-- 关联查询 -->
+    <!-- <select id="getTemplateEntity" parameterType="String" resultType="tk.ljyuan71.permissions.templateentity.model.TemplateEntity">
+        select guid,entity_Full_Path,entity_Comment,is_Deleted from TEMPLATE_ENTITY where guid=#{guid}
+    </select> -->
+    <select id="getTemplateMatter" parameterType="String" resultType="tk.ljyuan71.permissions.templatematter.model.TemplateMatter">
+        select matter_name,remark from TEMPLATE_MATTER where guid=#{guid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  TEMPLAT_ENTITY_VAR where guid=#{guid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from TEMPLAT_ENTITY_VAR 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="templatEntityVar">
+        select <include refid="columns"/> from TEMPLAT_ENTITY_VAR 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			<!-- order by id  desc -->
+			order by matter_Id,entity_Id
+		</if>
+    </select>
+</mapper>

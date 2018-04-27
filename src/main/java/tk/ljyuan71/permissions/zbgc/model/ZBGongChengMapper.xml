@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.ljyuan71.permissions.zbgc.dao.ZBGongChengDao" >
+    <resultMap id="ZBGongCheng" type="tk.ljyuan71.permissions.zbgc.model.ZBGongCheng">
+		<id property="gcGuid" column="GC_GUID" jdbcType="VARCHAR"/>
+		<result property="shixiangGuid" column="SHIXIANG_GUID" jdbcType="VARCHAR"/>
+		<result property="gcBaojianBh" column="GC_BAOJIAN_BH" jdbcType="VARCHAR"/>
+		<result property="gcBh" column="GC_BH" jdbcType="VARCHAR"/>
+		<result property="gcName" column="GC_NAME" jdbcType="VARCHAR"/>
+		<result property="gcLeixing" column="GC_LEIXING" jdbcType="VARCHAR"/>
+		<result property="gcLeixingQita" column="GC_LEIXING_QITA" jdbcType="VARCHAR"/>
+		<result property="zbFangshi" column="ZB_FANGSHI" jdbcType="NUMERIC"/>
+		<result property="zsFangshi" column="ZS_FANGSHI" jdbcType="NUMERIC"/>
+		<result property="isChangwaiGc" column="IS_CHANGWAI_GC" jdbcType="NUMERIC"/>
+		<result property="isPlzb" column="IS_PLZB" jdbcType="NUMERIC"/>
+		<result property="zhuguanBumenBh" column="ZHUGUAN_BUMEN_BH" jdbcType="VARCHAR"/>
+		<result property="zhuguanBumenName" column="ZHUGUAN_BUMEN_NAME" jdbcType="VARCHAR"/>
+		<result property="zbrGuid" column="ZBR_GUID" jdbcType="VARCHAR"/>
+		<result property="zbrBh" column="ZBR_BH" jdbcType="VARCHAR"/>
+		<result property="zbrName" column="ZBR_NAME" jdbcType="VARCHAR"/>
+		<result property="lianxirenName" column="LIANXIREN_NAME" jdbcType="VARCHAR"/>
+		<result property="lianxirenPhone" column="LIANXIREN_PHONE" jdbcType="VARCHAR"/>
+		<result property="lianxirenMobile" column="LIANXIREN_MOBILE" jdbcType="VARCHAR"/>
+		<result property="zbrDanweiXingzhi" column="ZBR_DANWEI_XINGZHI" jdbcType="VARCHAR"/>
+		<result property="zbrDanweiJibie" column="ZBR_DANWEI_JIBIE" jdbcType="VARCHAR"/>
+		<result property="zbrSuoshuXitong" column="ZBR_SUOSHU_XITONG" jdbcType="VARCHAR"/>
+		<result property="caigouJigou" column="CAIGOU_JIGOU" jdbcType="VARCHAR"/>
+		<result property="jingbanrenName" column="JINGBANREN_NAME" jdbcType="VARCHAR"/>
+		<result property="jingbanrenMobile" column="JINGBANREN_MOBILE" jdbcType="VARCHAR"/>
+		<result property="jingbanrenEmail" column="JINGBANREN_EMAIL" jdbcType="VARCHAR"/>
+		<result property="jingbanrenPhone" column="JINGBANREN_PHONE" jdbcType="VARCHAR"/>
+		<result property="jingbanrenWeixin" column="JINGBANREN_WEIXIN" jdbcType="VARCHAR"/>
+		<result property="jingbanrenQq" column="JINGBANREN_QQ" jdbcType="VARCHAR"/>
+		<result property="cgZuzhiXingshi" column="CG_ZUZHI_XINGSHI" jdbcType="VARCHAR"/>
+		<result property="zbZuzhiXingshiQita" column="ZB_ZUZHI_XINGSHI_QITA" jdbcType="VARCHAR"/>
+		<result property="bmWangshang" column="BM_WANGSHANG" jdbcType="NUMERIC"/>
+		<result property="bmChuangkou" column="BM_CHUANGKOU" jdbcType="NUMERIC"/>
+		<result property="jbWangshang" column="JB_WANGSHANG" jdbcType="NUMERIC"/>
+		<result property="jbChuangkou" column="JB_CHUANGKOU" jdbcType="NUMERIC"/>
+		<result property="pbFangshi" column="PB_FANGSHI" jdbcType="NUMERIC"/>
+		<result property="zbZuzhiXingshi" column="ZB_ZUZHI_XINGSHI" jdbcType="NUMERIC"/>
+		<result property="createTime" column="CREATE_TIME" jdbcType="NUMERIC"/>
+		<result property="creatorGuid" column="CREATOR_GUID" jdbcType="VARCHAR"/>
+		<result property="creatorName" column="CREATOR_NAME" jdbcType="VARCHAR"/>
+		<result property="modifyTime" column="MODIFY_TIME" jdbcType="NUMERIC"/>
+		<result property="modifyerName" column="MODIFYER_NAME" jdbcType="VARCHAR"/>
+		<result property="baojianQiyeBh" column="BAOJIAN_QIYE_BH" jdbcType="VARCHAR"/>
+		<result property="shenpiZhuangtai" column="SHENPI_ZHUANGTAI" jdbcType="NUMERIC"/>
+		<result property="isDeleted" column="IS_DELETED" jdbcType="NUMERIC"/>
+		<result property="xmGuid" column="XM_GUID" jdbcType="VARCHAR"/>
+		<result property="zhuguanBumenBh2" column="ZHUGUAN_BUMEN_BH2" jdbcType="VARCHAR"/>
+		<result property="jianduBumenBh" column="JIANDU_BUMEN_BH" jdbcType="VARCHAR"/>
+		<result property="jianduBumenName" column="JIANDU_BUMEN_NAME" jdbcType="VARCHAR"/>
+		<result property="jsdwGuid" column="JSDW_GUID" jdbcType="VARCHAR"/>
+		<result property="jsdwBh" column="JSDW_BH" jdbcType="VARCHAR"/>
+		<result property="gonggongFuwuBh" column="GONGGONG_FUWU_BH" jdbcType="VARCHAR"/>
+		<result property="isDoudiXinzeng" column="IS_DOUDI_XINZENG" jdbcType="NUMERIC"/>
+		<result property="isDoudiXiugai" column="IS_DOUDI_XIUGAI" jdbcType="NUMERIC"/>
+		<result property="zbrQuedingFangshi" column="ZBR_QUEDING_FANGSHI" jdbcType="NUMERIC"/>
+		<result property="isZhongguanheGc" column="IS_ZHONGGUANHE_GC" jdbcType="NUMERIC"/>
+		<result property="isPlzb2" column="IS_PLZB2" jdbcType="NUMERIC"/>
+		<result property="zbdlGuid" column="ZBDL_GUID" jdbcType="VARCHAR"/>
+		<result property="isOlddata" column="IS_OLDDATA" jdbcType="NUMERIC"/>
+		<result property="gcGuidParent" column="GC_GUID_PARENT" jdbcType="VARCHAR"/>
+		<result property="shenbaoZerenren" column="SHENBAO_ZERENREN" jdbcType="VARCHAR"/>
+		<result property="shenbaoZerenrenBh" column="SHENBAO_ZERENREN_BH" jdbcType="VARCHAR"/>
+		<result property="zhuanZbFangshi" column="ZHUAN_ZB_FANGSHI" jdbcType="VARCHAR"/>
+		<result property="feileiDaima" column="FEILEI_DAIMA" jdbcType="VARCHAR"/>
+		<result property="xieyiDanweiBh" column="XIEYI_DANWEI_BH" jdbcType="VARCHAR"/>
+		<result property="xieyiDanweiName" column="XIEYI_DANWEI_NAME" jdbcType="VARCHAR"/>
+		<result property="chouqianYuanze" column="CHOUQIAN_YUANZE" jdbcType="VARCHAR"/>
+		<result property="isJianzhuHangye" column="IS_JIANZHU_HANGYE" jdbcType="NUMERIC"/>
+		<result property="xmBh2" column="XM_BH2" jdbcType="VARCHAR"/>
+		<result property="gcBh2" column="GC_BH2" jdbcType="VARCHAR"/>
+		<result property="isXuyaoYejiwenjian" column="IS_XUYAO_YEJIWENJIAN" jdbcType="NUMERIC"/>
+		<result property="isBaoming" column="IS_BAOMING" jdbcType="NUMERIC"/>
+		<result property="isQueren" column="IS_QUEREN" jdbcType="NUMERIC"/>
+		<result property="xmLeixing" column="XM_LEIXING" jdbcType="NUMERIC"/>
+		<result property="fuwufeiShouquFs" column="FUWUFEI_SHOUQU_FS" jdbcType="NUMERIC"/>
+		<result property="fuwufei" column="FUWUFEI" jdbcType="NUMERIC"/>
+		<result property="jiandurenbh" column="JIANDURENBH" jdbcType="VARCHAR"/>
+		<result property="projectManagerguid" column="PROJECT_MANAGERGUID" jdbcType="VARCHAR"/>
+		<result property="projectManagername" column="PROJECT_MANAGERNAME" jdbcType="VARCHAR"/>
+		<result property="zbShuoming" column="ZB_SHUOMING" jdbcType="CLOB"/>
+		<result property="isyifaBaoming" column="ISYIFA_BAOMING" jdbcType="VARCHAR"/>
+		<result property="beizhu" column="BEIZHU" jdbcType="CLOB"/>
+		<result property="zbxiangmuwenjian" column="ZBXIANGMUWENJIAN" jdbcType="VARCHAR"/>
+		<result property="zbxiangmuwenjianoldname" column="ZBXIANGMUWENJIANOLDNAME" jdbcType="VARCHAR"/>
+		<result property="zbdlName" column="ZBDL_NAME" jdbcType="VARCHAR"/>
+		<result property="isAutobh" column="IS_AUTOBH" jdbcType="NUMERIC"/>
+		<result property="deptGuid" column="DEPT_GUID" jdbcType="VARCHAR"/>
+		<result property="zbGkfw" column="ZB_GKFW" jdbcType="CLOB"/>
+		<result property="zbRequire" column="ZB_REQUIRE" jdbcType="CLOB"/>
+		<result property="zbCondition" column="ZB_CONDITION" jdbcType="CLOB"/>
+		<result property="shichangLeixing" column="SHICHANG_LEIXING" jdbcType="NUMERIC"/>
+		<result property="gcPtbh" column="GC_PTBH" jdbcType="VARCHAR"/>
+		<result property="feiyifaliyou" column="FEIYIFALIYOU" jdbcType="CLOB"/>
+	</resultMap>
+	<sql id="columns">
+		GC_GUID,SHIXIANG_GUID,GC_BAOJIAN_BH,GC_BH,GC_NAME,GC_LEIXING,GC_LEIXING_QITA,ZB_FANGSHI,ZS_FANGSHI,IS_CHANGWAI_GC,IS_PLZB,ZHUGUAN_BUMEN_BH,ZHUGUAN_BUMEN_NAME,ZBR_GUID,ZBR_BH,ZBR_NAME,LIANXIREN_NAME,LIANXIREN_PHONE,LIANXIREN_MOBILE,ZBR_DANWEI_XINGZHI,ZBR_DANWEI_JIBIE,ZBR_SUOSHU_XITONG,CAIGOU_JIGOU,JINGBANREN_NAME,JINGBANREN_MOBILE,JINGBANREN_EMAIL,JINGBANREN_PHONE,JINGBANREN_WEIXIN,JINGBANREN_QQ,CG_ZUZHI_XINGSHI,ZB_ZUZHI_XINGSHI_QITA,BM_WANGSHANG,BM_CHUANGKOU,JB_WANGSHANG,JB_CHUANGKOU,PB_FANGSHI,ZB_ZUZHI_XINGSHI,CREATE_TIME,CREATOR_GUID,CREATOR_NAME,MODIFY_TIME,MODIFYER_NAME,BAOJIAN_QIYE_BH,SHENPI_ZHUANGTAI,IS_DELETED,XM_GUID,ZHUGUAN_BUMEN_BH2,JIANDU_BUMEN_BH,JIANDU_BUMEN_NAME,JSDW_GUID,JSDW_BH,GONGGONG_FUWU_BH,IS_DOUDI_XINZENG,IS_DOUDI_XIUGAI,ZBR_QUEDING_FANGSHI,IS_ZHONGGUANHE_GC,IS_PLZB2,ZBDL_GUID,IS_OLDDATA,GC_GUID_PARENT,SHENBAO_ZERENREN,SHENBAO_ZERENREN_BH,ZHUAN_ZB_FANGSHI,FEILEI_DAIMA,XIEYI_DANWEI_BH,XIEYI_DANWEI_NAME,CHOUQIAN_YUANZE,IS_JIANZHU_HANGYE,XM_BH2,GC_BH2,IS_XUYAO_YEJIWENJIAN,IS_BAOMING,IS_QUEREN,XM_LEIXING,FUWUFEI_SHOUQU_FS,FUWUFEI,JIANDURENBH,PROJECT_MANAGERGUID,PROJECT_MANAGERNAME,ZB_SHUOMING,ISYIFA_BAOMING,BEIZHU,ZBXIANGMUWENJIAN,ZBXIANGMUWENJIANOLDNAME,ZBDL_NAME,IS_AUTOBH,DEPT_GUID,ZB_GKFW,ZB_REQUIRE,ZB_CONDITION,SHICHANG_LEIXING,GC_PTBH,FEIYIFALIYOU
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(gcGuid)"> AND instr(GC_GUID,'${gcGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcGuidEquals)"> AND GC_GUID  =#{gcGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shixiangGuid)"> AND instr(SHIXIANG_GUID,'${shixiangGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(shixiangGuidEquals)"> AND SHIXIANG_GUID  =#{shixiangGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcBaojianBh)"> AND instr(GC_BAOJIAN_BH,'${gcBaojianBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcBaojianBhEquals)"> AND GC_BAOJIAN_BH  =#{gcBaojianBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcBh)"> AND instr(GC_BH,'${gcBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcBhEquals)"> AND GC_BH  =#{gcBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcName)"> AND instr(GC_NAME,'${gcName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcNameEquals)"> AND GC_NAME  =#{gcNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcLeixing)"> AND instr(GC_LEIXING,'${gcLeixing}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcLeixingEquals)"> AND GC_LEIXING  =#{gcLeixingEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gcLeixingQita)"> AND instr(GC_LEIXING_QITA,'${gcLeixingQita}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcLeixingQitaEquals)"> AND GC_LEIXING_QITA  =#{gcLeixingQitaEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbFangshi)"> AND ZB_FANGSHI  =#{zbFangshi} </if>
+			<if test="@Ognl@isNotEmpty(zsFangshi)"> AND ZS_FANGSHI  =#{zsFangshi} </if>
+			<if test="@Ognl@isNotEmpty(isChangwaiGc)"> AND IS_CHANGWAI_GC  =#{isChangwaiGc} </if>
+			<if test="@Ognl@isNotEmpty(isPlzb)"> AND IS_PLZB  =#{isPlzb} </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenBh)"> AND instr(ZHUGUAN_BUMEN_BH,'${zhuguanBumenBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenBhEquals)"> AND ZHUGUAN_BUMEN_BH  =#{zhuguanBumenBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenName)"> AND instr(ZHUGUAN_BUMEN_NAME,'${zhuguanBumenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenNameEquals)"> AND ZHUGUAN_BUMEN_NAME  =#{zhuguanBumenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrGuid)"> AND instr(ZBR_GUID,'${zbrGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrGuidEquals)"> AND ZBR_GUID  =#{zbrGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrBh)"> AND instr(ZBR_BH,'${zbrBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrBhEquals)"> AND ZBR_BH  =#{zbrBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrName)"> AND instr(ZBR_NAME,'${zbrName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrNameEquals)"> AND ZBR_NAME  =#{zbrNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenName)"> AND instr(LIANXIREN_NAME,'${lianxirenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenNameEquals)"> AND LIANXIREN_NAME  =#{lianxirenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenPhone)"> AND instr(LIANXIREN_PHONE,'${lianxirenPhone}')>0  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenPhoneEquals)"> AND LIANXIREN_PHONE  =#{lianxirenPhoneEquals}  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenMobile)"> AND instr(LIANXIREN_MOBILE,'${lianxirenMobile}')>0  </if>
+			<if test="@Ognl@isNotEmpty(lianxirenMobileEquals)"> AND LIANXIREN_MOBILE  =#{lianxirenMobileEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrDanweiXingzhi)"> AND instr(ZBR_DANWEI_XINGZHI,'${zbrDanweiXingzhi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrDanweiXingzhiEquals)"> AND ZBR_DANWEI_XINGZHI  =#{zbrDanweiXingzhiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrDanweiJibie)"> AND instr(ZBR_DANWEI_JIBIE,'${zbrDanweiJibie}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrDanweiJibieEquals)"> AND ZBR_DANWEI_JIBIE  =#{zbrDanweiJibieEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbrSuoshuXitong)"> AND instr(ZBR_SUOSHU_XITONG,'${zbrSuoshuXitong}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbrSuoshuXitongEquals)"> AND ZBR_SUOSHU_XITONG  =#{zbrSuoshuXitongEquals}  </if>
+			<if test="@Ognl@isNotEmpty(caigouJigou)"> AND instr(CAIGOU_JIGOU,'${caigouJigou}')>0  </if>
+			<if test="@Ognl@isNotEmpty(caigouJigouEquals)"> AND CAIGOU_JIGOU  =#{caigouJigouEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenName)"> AND instr(JINGBANREN_NAME,'${jingbanrenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenNameEquals)"> AND JINGBANREN_NAME  =#{jingbanrenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenMobile)"> AND instr(JINGBANREN_MOBILE,'${jingbanrenMobile}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenMobileEquals)"> AND JINGBANREN_MOBILE  =#{jingbanrenMobileEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenEmail)"> AND instr(JINGBANREN_EMAIL,'${jingbanrenEmail}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenEmailEquals)"> AND JINGBANREN_EMAIL  =#{jingbanrenEmailEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenPhone)"> AND instr(JINGBANREN_PHONE,'${jingbanrenPhone}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenPhoneEquals)"> AND JINGBANREN_PHONE  =#{jingbanrenPhoneEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenWeixin)"> AND instr(JINGBANREN_WEIXIN,'${jingbanrenWeixin}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenWeixinEquals)"> AND JINGBANREN_WEIXIN  =#{jingbanrenWeixinEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenQq)"> AND instr(JINGBANREN_QQ,'${jingbanrenQq}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jingbanrenQqEquals)"> AND JINGBANREN_QQ  =#{jingbanrenQqEquals}  </if>
+			<if test="@Ognl@isNotEmpty(cgZuzhiXingshi)"> AND instr(CG_ZUZHI_XINGSHI,'${cgZuzhiXingshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(cgZuzhiXingshiEquals)"> AND CG_ZUZHI_XINGSHI  =#{cgZuzhiXingshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbZuzhiXingshiQita)"> AND instr(ZB_ZUZHI_XINGSHI_QITA,'${zbZuzhiXingshiQita}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbZuzhiXingshiQitaEquals)"> AND ZB_ZUZHI_XINGSHI_QITA  =#{zbZuzhiXingshiQitaEquals}  </if>
+			<if test="@Ognl@isNotEmpty(bmWangshang)"> AND BM_WANGSHANG  =#{bmWangshang} </if>
+			<if test="@Ognl@isNotEmpty(bmChuangkou)"> AND BM_CHUANGKOU  =#{bmChuangkou} </if>
+			<if test="@Ognl@isNotEmpty(jbWangshang)"> AND JB_WANGSHANG  =#{jbWangshang} </if>
+			<if test="@Ognl@isNotEmpty(jbChuangkou)"> AND JB_CHUANGKOU  =#{jbChuangkou} </if>
+			<if test="@Ognl@isNotEmpty(pbFangshi)"> AND PB_FANGSHI  =#{pbFangshi} </if>
+			<if test="@Ognl@isNotEmpty(zbZuzhiXingshi)"> AND ZB_ZUZHI_XINGSHI  =#{zbZuzhiXingshi} </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATE_TIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(creatorGuid)"> AND instr(CREATOR_GUID,'${creatorGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(creatorGuidEquals)"> AND CREATOR_GUID  =#{creatorGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(creatorName)"> AND instr(CREATOR_NAME,'${creatorName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(creatorNameEquals)"> AND CREATOR_NAME  =#{creatorNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(modifyTime)"> AND MODIFY_TIME  =#{modifyTime} </if>
+			<if test="@Ognl@isNotEmpty(modifyerName)"> AND instr(MODIFYER_NAME,'${modifyerName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(modifyerNameEquals)"> AND MODIFYER_NAME  =#{modifyerNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(baojianQiyeBh)"> AND instr(BAOJIAN_QIYE_BH,'${baojianQiyeBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(baojianQiyeBhEquals)"> AND BAOJIAN_QIYE_BH  =#{baojianQiyeBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shenpiZhuangtai)"> AND SHENPI_ZHUANGTAI  =#{shenpiZhuangtai} </if>
+			<if test="@Ognl@isNotEmpty(isDeleted)"> AND IS_DELETED  =#{isDeleted} </if>
+			<if test="@Ognl@isNotEmpty(xmGuid)"> AND instr(XM_GUID,'${xmGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(xmGuidEquals)"> AND XM_GUID  =#{xmGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenBh2)"> AND instr(ZHUGUAN_BUMEN_BH2,'${zhuguanBumenBh2}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zhuguanBumenBh2Equals)"> AND ZHUGUAN_BUMEN_BH2  =#{zhuguanBumenBh2Equals}  </if>
+			<if test="@Ognl@isNotEmpty(jianduBumenBh)"> AND instr(JIANDU_BUMEN_BH,'${jianduBumenBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jianduBumenBhEquals)"> AND JIANDU_BUMEN_BH  =#{jianduBumenBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jianduBumenName)"> AND instr(JIANDU_BUMEN_NAME,'${jianduBumenName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jianduBumenNameEquals)"> AND JIANDU_BUMEN_NAME  =#{jianduBumenNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jsdwGuid)"> AND instr(JSDW_GUID,'${jsdwGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jsdwGuidEquals)"> AND JSDW_GUID  =#{jsdwGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(jsdwBh)"> AND instr(JSDW_BH,'${jsdwBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jsdwBhEquals)"> AND JSDW_BH  =#{jsdwBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(gonggongFuwuBh)"> AND instr(GONGGONG_FUWU_BH,'${gonggongFuwuBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gonggongFuwuBhEquals)"> AND GONGGONG_FUWU_BH  =#{gonggongFuwuBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isDoudiXinzeng)"> AND IS_DOUDI_XINZENG  =#{isDoudiXinzeng} </if>
+			<if test="@Ognl@isNotEmpty(isDoudiXiugai)"> AND IS_DOUDI_XIUGAI  =#{isDoudiXiugai} </if>
+			<if test="@Ognl@isNotEmpty(zbrQuedingFangshi)"> AND ZBR_QUEDING_FANGSHI  =#{zbrQuedingFangshi} </if>
+			<if test="@Ognl@isNotEmpty(isZhongguanheGc)"> AND IS_ZHONGGUANHE_GC  =#{isZhongguanheGc} </if>
+			<if test="@Ognl@isNotEmpty(isPlzb2)"> AND IS_PLZB2  =#{isPlzb2} </if>
+			<if test="@Ognl@isNotEmpty(zbdlGuid)"> AND instr(ZBDL_GUID,'${zbdlGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlGuidEquals)"> AND ZBDL_GUID  =#{zbdlGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isOlddata)"> AND IS_OLDDATA  =#{isOlddata} </if>
+			<if test="@Ognl@isNotEmpty(gcGuidParent)"> AND instr(GC_GUID_PARENT,'${gcGuidParent}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcGuidParentEquals)"> AND GC_GUID_PARENT  =#{gcGuidParentEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shenbaoZerenren)"> AND instr(SHENBAO_ZERENREN,'${shenbaoZerenren}')>0  </if>
+			<if test="@Ognl@isNotEmpty(shenbaoZerenrenEquals)"> AND SHENBAO_ZERENREN  =#{shenbaoZerenrenEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shenbaoZerenrenBh)"> AND instr(SHENBAO_ZERENREN_BH,'${shenbaoZerenrenBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(shenbaoZerenrenBhEquals)"> AND SHENBAO_ZERENREN_BH  =#{shenbaoZerenrenBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zhuanZbFangshi)"> AND instr(ZHUAN_ZB_FANGSHI,'${zhuanZbFangshi}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zhuanZbFangshiEquals)"> AND ZHUAN_ZB_FANGSHI  =#{zhuanZbFangshiEquals}  </if>
+			<if test="@Ognl@isNotEmpty(feileiDaima)"> AND instr(FEILEI_DAIMA,'${feileiDaima}')>0  </if>
+			<if test="@Ognl@isNotEmpty(feileiDaimaEquals)"> AND FEILEI_DAIMA  =#{feileiDaimaEquals}  </if>
+			<if test="@Ognl@isNotEmpty(xieyiDanweiBh)"> AND instr(XIEYI_DANWEI_BH,'${xieyiDanweiBh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(xieyiDanweiBhEquals)"> AND XIEYI_DANWEI_BH  =#{xieyiDanweiBhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(xieyiDanweiName)"> AND instr(XIEYI_DANWEI_NAME,'${xieyiDanweiName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(xieyiDanweiNameEquals)"> AND XIEYI_DANWEI_NAME  =#{xieyiDanweiNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(chouqianYuanze)"> AND instr(CHOUQIAN_YUANZE,'${chouqianYuanze}')>0  </if>
+			<if test="@Ognl@isNotEmpty(chouqianYuanzeEquals)"> AND CHOUQIAN_YUANZE  =#{chouqianYuanzeEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isJianzhuHangye)"> AND IS_JIANZHU_HANGYE  =#{isJianzhuHangye} </if>
+			<if test="@Ognl@isNotEmpty(xmBh2)"> AND instr(XM_BH2,'${xmBh2}')>0  </if>
+			<if test="@Ognl@isNotEmpty(xmBh2Equals)"> AND XM_BH2  =#{xmBh2Equals}  </if>
+			<if test="@Ognl@isNotEmpty(gcBh2)"> AND instr(GC_BH2,'${gcBh2}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcBh2Equals)"> AND GC_BH2  =#{gcBh2Equals}  </if>
+			<if test="@Ognl@isNotEmpty(isXuyaoYejiwenjian)"> AND IS_XUYAO_YEJIWENJIAN  =#{isXuyaoYejiwenjian} </if>
+			<if test="@Ognl@isNotEmpty(isBaoming)"> AND IS_BAOMING  =#{isBaoming} </if>
+			<if test="@Ognl@isNotEmpty(isQueren)"> AND IS_QUEREN  =#{isQueren} </if>
+			<if test="@Ognl@isNotEmpty(xmLeixing)"> AND XM_LEIXING  =#{xmLeixing} </if>
+			<if test="@Ognl@isNotEmpty(fuwufeiShouquFs)"> AND FUWUFEI_SHOUQU_FS  =#{fuwufeiShouquFs} </if>
+			<if test="@Ognl@isNotEmpty(fuwufei)"> AND FUWUFEI  =#{fuwufei} </if>
+			<if test="@Ognl@isNotEmpty(jiandurenbh)"> AND instr(JIANDURENBH,'${jiandurenbh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(jiandurenbhEquals)"> AND JIANDURENBH  =#{jiandurenbhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(projectManagerguid)"> AND instr(PROJECT_MANAGERGUID,'${projectManagerguid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(projectManagerguidEquals)"> AND PROJECT_MANAGERGUID  =#{projectManagerguidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(projectManagername)"> AND instr(PROJECT_MANAGERNAME,'${projectManagername}')>0  </if>
+			<if test="@Ognl@isNotEmpty(projectManagernameEquals)"> AND PROJECT_MANAGERNAME  =#{projectManagernameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbShuoming)"> AND instr(ZB_SHUOMING,'${zbShuoming}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbShuomingEquals)"> AND ZB_SHUOMING  =#{zbShuomingEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isyifaBaoming)"> AND instr(ISYIFA_BAOMING,'${isyifaBaoming}')>0  </if>
+			<if test="@Ognl@isNotEmpty(isyifaBaomingEquals)"> AND ISYIFA_BAOMING  =#{isyifaBaomingEquals}  </if>
+			<if test="@Ognl@isNotEmpty(beizhu)"> AND instr(BEIZHU,'${beizhu}')>0  </if>
+			<if test="@Ognl@isNotEmpty(beizhuEquals)"> AND BEIZHU  =#{beizhuEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbxiangmuwenjian)"> AND instr(ZBXIANGMUWENJIAN,'${zbxiangmuwenjian}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbxiangmuwenjianEquals)"> AND ZBXIANGMUWENJIAN  =#{zbxiangmuwenjianEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbxiangmuwenjianoldname)"> AND instr(ZBXIANGMUWENJIANOLDNAME,'${zbxiangmuwenjianoldname}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbxiangmuwenjianoldnameEquals)"> AND ZBXIANGMUWENJIANOLDNAME  =#{zbxiangmuwenjianoldnameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbdlName)"> AND instr(ZBDL_NAME,'${zbdlName}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbdlNameEquals)"> AND ZBDL_NAME  =#{zbdlNameEquals}  </if>
+			<if test="@Ognl@isNotEmpty(isAutobh)"> AND IS_AUTOBH  =#{isAutobh} </if>
+			<if test="@Ognl@isNotEmpty(deptGuid)"> AND instr(DEPT_GUID,'${deptGuid}')>0  </if>
+			<if test="@Ognl@isNotEmpty(deptGuidEquals)"> AND DEPT_GUID  =#{deptGuidEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbGkfw)"> AND instr(ZB_GKFW,'${zbGkfw}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbGkfwEquals)"> AND ZB_GKFW  =#{zbGkfwEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbRequire)"> AND instr(ZB_REQUIRE,'${zbRequire}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbRequireEquals)"> AND ZB_REQUIRE  =#{zbRequireEquals}  </if>
+			<if test="@Ognl@isNotEmpty(zbCondition)"> AND instr(ZB_CONDITION,'${zbCondition}')>0  </if>
+			<if test="@Ognl@isNotEmpty(zbConditionEquals)"> AND ZB_CONDITION  =#{zbConditionEquals}  </if>
+			<if test="@Ognl@isNotEmpty(shichangLeixing)"> AND SHICHANG_LEIXING  =#{shichangLeixing} </if>
+			<if test="@Ognl@isNotEmpty(gcPtbh)"> AND instr(GC_PTBH,'${gcPtbh}')>0  </if>
+			<if test="@Ognl@isNotEmpty(gcPtbhEquals)"> AND GC_PTBH  =#{gcPtbhEquals}  </if>
+			<if test="@Ognl@isNotEmpty(feiyifaliyou)"> AND instr(FEIYIFALIYOU,'${feiyifaliyou}')>0  </if>
+			<if test="@Ognl@isNotEmpty(feiyifaliyouEquals)"> AND FEIYIFALIYOU  =#{feiyifaliyouEquals}  </if>
+			<if test="@Ognl@isNotEmpty(search)"> AND  
+					(	
+							instr(GC_GUID,'${search}')>0    or 
+							instr(SHIXIANG_GUID,'${search}')>0    or 
+							instr(GC_BAOJIAN_BH,'${search}')>0    or 
+							instr(GC_BH,'${search}')>0    or 
+							instr(GC_NAME,'${search}')>0    or 
+							instr(GC_LEIXING,'${search}')>0    or 
+							instr(GC_LEIXING_QITA,'${search}')>0    or 
+							instr(ZB_FANGSHI,'${search}')>0    or 
+							instr(ZS_FANGSHI,'${search}')>0    or 
+							instr(IS_CHANGWAI_GC,'${search}')>0    or 
+							instr(IS_PLZB,'${search}')>0    or 
+							instr(ZHUGUAN_BUMEN_BH,'${search}')>0    or 
+							instr(ZHUGUAN_BUMEN_NAME,'${search}')>0    or 
+							instr(ZBR_GUID,'${search}')>0    or 
+							instr(ZBR_BH,'${search}')>0    or 
+							instr(ZBR_NAME,'${search}')>0    or 
+							instr(LIANXIREN_NAME,'${search}')>0    or 
+							instr(LIANXIREN_PHONE,'${search}')>0    or 
+							instr(LIANXIREN_MOBILE,'${search}')>0    or 
+							instr(ZBR_DANWEI_XINGZHI,'${search}')>0    or 
+							instr(ZBR_DANWEI_JIBIE,'${search}')>0    or 
+							instr(ZBR_SUOSHU_XITONG,'${search}')>0    or 
+							instr(CAIGOU_JIGOU,'${search}')>0    or 
+							instr(JINGBANREN_NAME,'${search}')>0    or 
+							instr(JINGBANREN_MOBILE,'${search}')>0    or 
+							instr(JINGBANREN_EMAIL,'${search}')>0    or 
+							instr(JINGBANREN_PHONE,'${search}')>0    or 
+							instr(JINGBANREN_WEIXIN,'${search}')>0    or 
+							instr(JINGBANREN_QQ,'${search}')>0    or 
+							instr(CG_ZUZHI_XINGSHI,'${search}')>0    or 
+							instr(ZB_ZUZHI_XINGSHI_QITA,'${search}')>0    or 
+							instr(BM_WANGSHANG,'${search}')>0    or 
+							instr(BM_CHUANGKOU,'${search}')>0    or 
+							instr(JB_WANGSHANG,'${search}')>0    or 
+							instr(JB_CHUANGKOU,'${search}')>0    or 
+							instr(PB_FANGSHI,'${search}')>0    or 
+							instr(ZB_ZUZHI_XINGSHI,'${search}')>0    or 
+							instr(CREATE_TIME,'${search}')>0    or 
+							instr(CREATOR_GUID,'${search}')>0    or 
+							instr(CREATOR_NAME,'${search}')>0    or 
+							instr(MODIFY_TIME,'${search}')>0    or 
+							instr(MODIFYER_NAME,'${search}')>0    or 
+							instr(BAOJIAN_QIYE_BH,'${search}')>0    or 
+							instr(SHENPI_ZHUANGTAI,'${search}')>0    or 
+							instr(IS_DELETED,'${search}')>0    or 
+							instr(XM_GUID,'${search}')>0    or 
+							instr(ZHUGUAN_BUMEN_BH2,'${search}')>0    or 
+							instr(JIANDU_BUMEN_BH,'${search}')>0    or 
+							instr(JIANDU_BUMEN_NAME,'${search}')>0    or 
+							instr(JSDW_GUID,'${search}')>0    or 
+							instr(JSDW_BH,'${search}')>0    or 
+							instr(GONGGONG_FUWU_BH,'${search}')>0    or 
+							instr(IS_DOUDI_XINZENG,'${search}')>0    or 
+							instr(IS_DOUDI_XIUGAI,'${search}')>0    or 
+							instr(ZBR_QUEDING_FANGSHI,'${search}')>0    or 
+							instr(IS_ZHONGGUANHE_GC,'${search}')>0    or 
+							instr(IS_PLZB2,'${search}')>0    or 
+							instr(ZBDL_GUID,'${search}')>0    or 
+							instr(IS_OLDDATA,'${search}')>0    or 
+							instr(GC_GUID_PARENT,'${search}')>0    or 
+							instr(SHENBAO_ZERENREN,'${search}')>0    or 
+							instr(SHENBAO_ZERENREN_BH,'${search}')>0    or 
+							instr(ZHUAN_ZB_FANGSHI,'${search}')>0    or 
+							instr(FEILEI_DAIMA,'${search}')>0    or 
+							instr(XIEYI_DANWEI_BH,'${search}')>0    or 
+							instr(XIEYI_DANWEI_NAME,'${search}')>0    or 
+							instr(CHOUQIAN_YUANZE,'${search}')>0    or 
+							instr(IS_JIANZHU_HANGYE,'${search}')>0    or 
+							instr(XM_BH2,'${search}')>0    or 
+							instr(GC_BH2,'${search}')>0    or 
+							instr(IS_XUYAO_YEJIWENJIAN,'${search}')>0    or 
+							instr(IS_BAOMING,'${search}')>0    or 
+							instr(IS_QUEREN,'${search}')>0    or 
+							instr(XM_LEIXING,'${search}')>0    or 
+							instr(FUWUFEI_SHOUQU_FS,'${search}')>0    or 
+							instr(FUWUFEI,'${search}')>0    or 
+							instr(JIANDURENBH,'${search}')>0    or 
+							instr(PROJECT_MANAGERGUID,'${search}')>0    or 
+							instr(PROJECT_MANAGERNAME,'${search}')>0    or 
+							instr(ZB_SHUOMING,'${search}')>0    or 
+							instr(ISYIFA_BAOMING,'${search}')>0    or 
+							instr(BEIZHU,'${search}')>0    or 
+							instr(ZBXIANGMUWENJIAN,'${search}')>0    or 
+							instr(ZBXIANGMUWENJIANOLDNAME,'${search}')>0    or 
+							instr(ZBDL_NAME,'${search}')>0    or 
+							instr(IS_AUTOBH,'${search}')>0    or 
+							instr(DEPT_GUID,'${search}')>0    or 
+							instr(ZB_GKFW,'${search}')>0    or 
+							instr(ZB_REQUIRE,'${search}')>0    or 
+							instr(ZB_CONDITION,'${search}')>0    or 
+							instr(SHICHANG_LEIXING,'${search}')>0    or 
+							instr(GC_PTBH,'${search}')>0    or 
+							instr(FEIYIFALIYOU,'${search}')>0  
+					)  
+			</if>
+		</where>
+	</sql>
+	<insert id="add" parameterType="tk.ljyuan71.permissions.zbgc.model.ZBGongCheng">
+        insert into ZB_GC
+		(<include refid="columns"/>)
+		values
+		(
+			#{gcGuid,jdbcType=VARCHAR}, 
+			#{shixiangGuid,jdbcType=VARCHAR}, 
+			#{gcBaojianBh,jdbcType=VARCHAR}, 
+			#{gcBh,jdbcType=VARCHAR}, 
+			#{gcName,jdbcType=VARCHAR}, 
+			#{gcLeixing,jdbcType=VARCHAR}, 
+			#{gcLeixingQita,jdbcType=VARCHAR}, 
+			#{zbFangshi,jdbcType=NUMERIC}, 
+			#{zsFangshi,jdbcType=NUMERIC}, 
+			#{isChangwaiGc,jdbcType=NUMERIC}, 
+			#{isPlzb,jdbcType=NUMERIC}, 
+			#{zhuguanBumenBh,jdbcType=VARCHAR}, 
+			#{zhuguanBumenName,jdbcType=VARCHAR}, 
+			#{zbrGuid,jdbcType=VARCHAR}, 
+			#{zbrBh,jdbcType=VARCHAR}, 
+			#{zbrName,jdbcType=VARCHAR}, 
+			#{lianxirenName,jdbcType=VARCHAR}, 
+			#{lianxirenPhone,jdbcType=VARCHAR}, 
+			#{lianxirenMobile,jdbcType=VARCHAR}, 
+			#{zbrDanweiXingzhi,jdbcType=VARCHAR}, 
+			#{zbrDanweiJibie,jdbcType=VARCHAR}, 
+			#{zbrSuoshuXitong,jdbcType=VARCHAR}, 
+			#{caigouJigou,jdbcType=VARCHAR}, 
+			#{jingbanrenName,jdbcType=VARCHAR}, 
+			#{jingbanrenMobile,jdbcType=VARCHAR}, 
+			#{jingbanrenEmail,jdbcType=VARCHAR}, 
+			#{jingbanrenPhone,jdbcType=VARCHAR}, 
+			#{jingbanrenWeixin,jdbcType=VARCHAR}, 
+			#{jingbanrenQq,jdbcType=VARCHAR}, 
+			#{cgZuzhiXingshi,jdbcType=VARCHAR}, 
+			#{zbZuzhiXingshiQita,jdbcType=VARCHAR}, 
+			#{bmWangshang,jdbcType=NUMERIC}, 
+			#{bmChuangkou,jdbcType=NUMERIC}, 
+			#{jbWangshang,jdbcType=NUMERIC}, 
+			#{jbChuangkou,jdbcType=NUMERIC}, 
+			#{pbFangshi,jdbcType=NUMERIC}, 
+			#{zbZuzhiXingshi,jdbcType=NUMERIC}, 
+			#{createTime,jdbcType=NUMERIC}, 
+			#{creatorGuid,jdbcType=VARCHAR}, 
+			#{creatorName,jdbcType=VARCHAR}, 
+			#{modifyTime,jdbcType=NUMERIC}, 
+			#{modifyerName,jdbcType=VARCHAR}, 
+			#{baojianQiyeBh,jdbcType=VARCHAR}, 
+			#{shenpiZhuangtai,jdbcType=NUMERIC}, 
+			#{isDeleted,jdbcType=NUMERIC}, 
+			#{xmGuid,jdbcType=VARCHAR}, 
+			#{zhuguanBumenBh2,jdbcType=VARCHAR}, 
+			#{jianduBumenBh,jdbcType=VARCHAR}, 
+			#{jianduBumenName,jdbcType=VARCHAR}, 
+			#{jsdwGuid,jdbcType=VARCHAR}, 
+			#{jsdwBh,jdbcType=VARCHAR}, 
+			#{gonggongFuwuBh,jdbcType=VARCHAR}, 
+			#{isDoudiXinzeng,jdbcType=NUMERIC}, 
+			#{isDoudiXiugai,jdbcType=NUMERIC}, 
+			#{zbrQuedingFangshi,jdbcType=NUMERIC}, 
+			#{isZhongguanheGc,jdbcType=NUMERIC}, 
+			#{isPlzb2,jdbcType=NUMERIC}, 
+			#{zbdlGuid,jdbcType=VARCHAR}, 
+			#{isOlddata,jdbcType=NUMERIC}, 
+			#{gcGuidParent,jdbcType=VARCHAR}, 
+			#{shenbaoZerenren,jdbcType=VARCHAR}, 
+			#{shenbaoZerenrenBh,jdbcType=VARCHAR}, 
+			#{zhuanZbFangshi,jdbcType=VARCHAR}, 
+			#{feileiDaima,jdbcType=VARCHAR}, 
+			#{xieyiDanweiBh,jdbcType=VARCHAR}, 
+			#{xieyiDanweiName,jdbcType=VARCHAR}, 
+			#{chouqianYuanze,jdbcType=VARCHAR}, 
+			#{isJianzhuHangye,jdbcType=NUMERIC}, 
+			#{xmBh2,jdbcType=VARCHAR}, 
+			#{gcBh2,jdbcType=VARCHAR}, 
+			#{isXuyaoYejiwenjian,jdbcType=NUMERIC}, 
+			#{isBaoming,jdbcType=NUMERIC}, 
+			#{isQueren,jdbcType=NUMERIC}, 
+			#{xmLeixing,jdbcType=NUMERIC}, 
+			#{fuwufeiShouquFs,jdbcType=NUMERIC}, 
+			#{fuwufei,jdbcType=NUMERIC}, 
+			#{jiandurenbh,jdbcType=VARCHAR}, 
+			#{projectManagerguid,jdbcType=VARCHAR}, 
+			#{projectManagername,jdbcType=VARCHAR}, 
+			#{zbShuoming,jdbcType=CLOB}, 
+			#{isyifaBaoming,jdbcType=VARCHAR}, 
+			#{beizhu,jdbcType=CLOB}, 
+			#{zbxiangmuwenjian,jdbcType=VARCHAR}, 
+			#{zbxiangmuwenjianoldname,jdbcType=VARCHAR}, 
+			#{zbdlName,jdbcType=VARCHAR}, 
+			#{isAutobh,jdbcType=NUMERIC}, 
+			#{deptGuid,jdbcType=VARCHAR}, 
+			#{zbGkfw,jdbcType=CLOB}, 
+			#{zbRequire,jdbcType=CLOB}, 
+			#{zbCondition,jdbcType=CLOB}, 
+			#{shichangLeixing,jdbcType=NUMERIC}, 
+			#{gcPtbh,jdbcType=VARCHAR}, 
+			#{feiyifaliyou,jdbcType=CLOB}
+		)
+    </insert>
+    <update id="update" parameterType="tk.ljyuan71.permissions.zbgc.model.ZBGongCheng">
+		update ZB_GC set
+		GC_GUID=#{gcGuid,jdbcType=VARCHAR},
+		SHIXIANG_GUID=#{shixiangGuid,jdbcType=VARCHAR},
+		GC_BAOJIAN_BH=#{gcBaojianBh,jdbcType=VARCHAR},
+		GC_BH=#{gcBh,jdbcType=VARCHAR},
+		GC_NAME=#{gcName,jdbcType=VARCHAR},
+		GC_LEIXING=#{gcLeixing,jdbcType=VARCHAR},
+		GC_LEIXING_QITA=#{gcLeixingQita,jdbcType=VARCHAR},
+		ZB_FANGSHI=#{zbFangshi,jdbcType=NUMERIC},
+		ZS_FANGSHI=#{zsFangshi,jdbcType=NUMERIC},
+		IS_CHANGWAI_GC=#{isChangwaiGc,jdbcType=NUMERIC},
+		IS_PLZB=#{isPlzb,jdbcType=NUMERIC},
+		ZHUGUAN_BUMEN_BH=#{zhuguanBumenBh,jdbcType=VARCHAR},
+		ZHUGUAN_BUMEN_NAME=#{zhuguanBumenName,jdbcType=VARCHAR},
+		ZBR_GUID=#{zbrGuid,jdbcType=VARCHAR},
+		ZBR_BH=#{zbrBh,jdbcType=VARCHAR},
+		ZBR_NAME=#{zbrName,jdbcType=VARCHAR},
+		LIANXIREN_NAME=#{lianxirenName,jdbcType=VARCHAR},
+		LIANXIREN_PHONE=#{lianxirenPhone,jdbcType=VARCHAR},
+		LIANXIREN_MOBILE=#{lianxirenMobile,jdbcType=VARCHAR},
+		ZBR_DANWEI_XINGZHI=#{zbrDanweiXingzhi,jdbcType=VARCHAR},
+		ZBR_DANWEI_JIBIE=#{zbrDanweiJibie,jdbcType=VARCHAR},
+		ZBR_SUOSHU_XITONG=#{zbrSuoshuXitong,jdbcType=VARCHAR},
+		CAIGOU_JIGOU=#{caigouJigou,jdbcType=VARCHAR},
+		JINGBANREN_NAME=#{jingbanrenName,jdbcType=VARCHAR},
+		JINGBANREN_MOBILE=#{jingbanrenMobile,jdbcType=VARCHAR},
+		JINGBANREN_EMAIL=#{jingbanrenEmail,jdbcType=VARCHAR},
+		JINGBANREN_PHONE=#{jingbanrenPhone,jdbcType=VARCHAR},
+		JINGBANREN_WEIXIN=#{jingbanrenWeixin,jdbcType=VARCHAR},
+		JINGBANREN_QQ=#{jingbanrenQq,jdbcType=VARCHAR},
+		CG_ZUZHI_XINGSHI=#{cgZuzhiXingshi,jdbcType=VARCHAR},
+		ZB_ZUZHI_XINGSHI_QITA=#{zbZuzhiXingshiQita,jdbcType=VARCHAR},
+		BM_WANGSHANG=#{bmWangshang,jdbcType=NUMERIC},
+		BM_CHUANGKOU=#{bmChuangkou,jdbcType=NUMERIC},
+		JB_WANGSHANG=#{jbWangshang,jdbcType=NUMERIC},
+		JB_CHUANGKOU=#{jbChuangkou,jdbcType=NUMERIC},
+		PB_FANGSHI=#{pbFangshi,jdbcType=NUMERIC},
+		ZB_ZUZHI_XINGSHI=#{zbZuzhiXingshi,jdbcType=NUMERIC},
+		CREATE_TIME=#{createTime,jdbcType=NUMERIC},
+		CREATOR_GUID=#{creatorGuid,jdbcType=VARCHAR},
+		CREATOR_NAME=#{creatorName,jdbcType=VARCHAR},
+		MODIFY_TIME=#{modifyTime,jdbcType=NUMERIC},
+		MODIFYER_NAME=#{modifyerName,jdbcType=VARCHAR},
+		BAOJIAN_QIYE_BH=#{baojianQiyeBh,jdbcType=VARCHAR},
+		SHENPI_ZHUANGTAI=#{shenpiZhuangtai,jdbcType=NUMERIC},
+		IS_DELETED=#{isDeleted,jdbcType=NUMERIC},
+		XM_GUID=#{xmGuid,jdbcType=VARCHAR},
+		ZHUGUAN_BUMEN_BH2=#{zhuguanBumenBh2,jdbcType=VARCHAR},
+		JIANDU_BUMEN_BH=#{jianduBumenBh,jdbcType=VARCHAR},
+		JIANDU_BUMEN_NAME=#{jianduBumenName,jdbcType=VARCHAR},
+		JSDW_GUID=#{jsdwGuid,jdbcType=VARCHAR},
+		JSDW_BH=#{jsdwBh,jdbcType=VARCHAR},
+		GONGGONG_FUWU_BH=#{gonggongFuwuBh,jdbcType=VARCHAR},
+		IS_DOUDI_XINZENG=#{isDoudiXinzeng,jdbcType=NUMERIC},
+		IS_DOUDI_XIUGAI=#{isDoudiXiugai,jdbcType=NUMERIC},
+		ZBR_QUEDING_FANGSHI=#{zbrQuedingFangshi,jdbcType=NUMERIC},
+		IS_ZHONGGUANHE_GC=#{isZhongguanheGc,jdbcType=NUMERIC},
+		IS_PLZB2=#{isPlzb2,jdbcType=NUMERIC},
+		ZBDL_GUID=#{zbdlGuid,jdbcType=VARCHAR},
+		IS_OLDDATA=#{isOlddata,jdbcType=NUMERIC},
+		GC_GUID_PARENT=#{gcGuidParent,jdbcType=VARCHAR},
+		SHENBAO_ZERENREN=#{shenbaoZerenren,jdbcType=VARCHAR},
+		SHENBAO_ZERENREN_BH=#{shenbaoZerenrenBh,jdbcType=VARCHAR},
+		ZHUAN_ZB_FANGSHI=#{zhuanZbFangshi,jdbcType=VARCHAR},
+		FEILEI_DAIMA=#{feileiDaima,jdbcType=VARCHAR},
+		XIEYI_DANWEI_BH=#{xieyiDanweiBh,jdbcType=VARCHAR},
+		XIEYI_DANWEI_NAME=#{xieyiDanweiName,jdbcType=VARCHAR},
+		CHOUQIAN_YUANZE=#{chouqianYuanze,jdbcType=VARCHAR},
+		IS_JIANZHU_HANGYE=#{isJianzhuHangye,jdbcType=NUMERIC},
+		XM_BH2=#{xmBh2,jdbcType=VARCHAR},
+		GC_BH2=#{gcBh2,jdbcType=VARCHAR},
+		IS_XUYAO_YEJIWENJIAN=#{isXuyaoYejiwenjian,jdbcType=NUMERIC},
+		IS_BAOMING=#{isBaoming,jdbcType=NUMERIC},
+		IS_QUEREN=#{isQueren,jdbcType=NUMERIC},
+		XM_LEIXING=#{xmLeixing,jdbcType=NUMERIC},
+		FUWUFEI_SHOUQU_FS=#{fuwufeiShouquFs,jdbcType=NUMERIC},
+		FUWUFEI=#{fuwufei,jdbcType=NUMERIC},
+		JIANDURENBH=#{jiandurenbh,jdbcType=VARCHAR},
+		PROJECT_MANAGERGUID=#{projectManagerguid,jdbcType=VARCHAR},
+		PROJECT_MANAGERNAME=#{projectManagername,jdbcType=VARCHAR},
+		ZB_SHUOMING=#{zbShuoming,jdbcType=CLOB},
+		ISYIFA_BAOMING=#{isyifaBaoming,jdbcType=VARCHAR},
+		BEIZHU=#{beizhu,jdbcType=CLOB},
+		ZBXIANGMUWENJIAN=#{zbxiangmuwenjian,jdbcType=VARCHAR},
+		ZBXIANGMUWENJIANOLDNAME=#{zbxiangmuwenjianoldname,jdbcType=VARCHAR},
+		ZBDL_NAME=#{zbdlName,jdbcType=VARCHAR},
+		IS_AUTOBH=#{isAutobh,jdbcType=NUMERIC},
+		DEPT_GUID=#{deptGuid,jdbcType=VARCHAR},
+		ZB_GKFW=#{zbGkfw,jdbcType=CLOB},
+		ZB_REQUIRE=#{zbRequire,jdbcType=CLOB},
+		ZB_CONDITION=#{zbCondition,jdbcType=CLOB},
+		SHICHANG_LEIXING=#{shichangLeixing,jdbcType=NUMERIC},
+		GC_PTBH=#{gcPtbh,jdbcType=VARCHAR},
+		FEIYIFALIYOU=#{feiyifaliyou,jdbcType=CLOB}
+		WHERE
+		GC_GUID=#{gcGuid}
+	</update>
+	<select id="getById" parameterType="String" resultType="tk.ljyuan71.permissions.zbgc.model.ZBGongCheng">
+        select <include refid="columns"/> from ZB_GC where GC_GUID=#{gcGuid}
+    </select>
+     <delete id="delById" parameterType="String" >
+        delete from  ZB_GC where GC_GUID=#{gcGuid}
+    </delete>
+    <select id="queryTotal"  resultType="Integer">
+        select count(*) from ZB_GC 
+        <include refid="dynamicWhere" /> 
+    </select>
+    <select id="queryAll"  resultMap="ZBGongCheng">
+        select <include refid="columns"/> from ZB_GC 
+        <include refid="dynamicWhere" /> 
+        <if test="@Ognl@isNotEmpty(sort)">
+			order by ${sort} ${order}
+		</if>
+		<if test="@Ognl@isEmpty(sort)">
+			order by GC_GUID  desc
+		</if>
+    </select>
+</mapper>
