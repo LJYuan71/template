@@ -52,7 +52,7 @@ public class ${modelname}ServiceImpl extends BaseServiceImpl<${modelname},String
 		boolean isSave = false;
 		boolean flag = false;
 		if(bean != null){
-			if(StringUtils.isBlank(bean.get${pkColName?cap_first}()){//新增
+			if(StringUtils.isBlank(bean.get${pkColName?cap_first}())){//新增
 				isSave = true;
 				bean.set${pkColName?cap_first}(UUID.randomUUID().toString());
 				bean.setCreateTime(System.currentTimeMillis());
@@ -61,7 +61,7 @@ public class ${modelname}ServiceImpl extends BaseServiceImpl<${modelname},String
 				bean.setIsDeleted(false);
 			}else{//修改
 				bean.setModifyTime(System.currentTimeMillis());
-				bean.setModifyerName(currentUser.getUserName());
+				bean.setModifierName(currentUser.getUserName());
 			}
 			if(isSave){
 				bean = this.save(bean);
@@ -97,7 +97,7 @@ public class ${modelname}ServiceImpl extends BaseServiceImpl<${modelname},String
 			if(bean != null){//判断操作名称
 				if(StringUtils.isNotBlank(actionName)){
 					bean.setModifyTime(System.currentTimeMillis());
-					bean.setModifyerName(user.getUserName());
+					bean.setModifierName(user.getUserName());
 					if("sc".equals(actionName)){//删除
 						if(!"2".equals(bean.getZhuangTai().toString())){
 							bean.setIsDeleted(true);
