@@ -45,7 +45,7 @@
 		parent.addPanel(tabText, urlTmp, true);
 	}
 	//操作
-	fucntion actionEvents(val, row, index){
+	function actionEvents(val, row, index){
 		var ck = '<a href="javascript:showTab(\'查看${model.tabComment}\',\'${packagename}/${packagename}_view.html\',\''
 				+ row.guid + '\')" title="查看">查看</a>';
 		var bj = '<a href="javascript:showTab(\'编辑${model.tabComment}\',\'${packagename}/${packagename}_edit.html\',\''
