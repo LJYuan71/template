@@ -3,7 +3,7 @@
 <#else>
 package ${domainsuf}.${system}.${modular}.${packagename}.service.impl;
 import ${domainsuf}.${system}.${modular}.${packagename}.model.${modelname};
-import ${domainsuf}.${system}.${modular}.${packagename}.dao.impl.${modelname}DaoImpl;
+import ${domainsuf}.${system}.${modular}.${packagename}.dao.impl.${modelname}Dao;
 </#if>
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class ${modelname}ServiceImpl extends BaseServiceImpl<${modelname},String
 	}
 	
 	@Autowired
-	private ${modelname}DaoImpl ${modelname?uncap_first}Dao;
+	private ${modelname}Dao ${modelname?uncap_first}Dao;
 	
 	@Override
 	public Pagination queryAll(QueryFilter filter) {
