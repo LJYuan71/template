@@ -28,12 +28,12 @@ public class ${modelname}DaoImpl extends HibernateBaseDaoZs<${modelname}, String
 	 */
 	@Override
 	public Pagination queryAll(QueryFilter filter){
-		Finder finder = Finder.create(" from "+ ${modelname}.class +" t1 where t1.isDeleted = 0 ");
+		Finder finder = Finder.create(" from "+ ${modelname}.class.getName() +" t1 where t1.isDeleted = 0 ");
 		Map<String, Object> param = filter.getFilters();
 		if (param != null) {
-			if (param.get("hysName") != null) {
-				finder.append(" and t1.hysName like :hysName");
-				finder.setParam("hysName", "%"+param.get("hysName")+"%");
+			if (param.get("attrName") != null) {
+				finder.append(" and t1.attrName like :attrName");
+				finder.setParam("attrName", "%"+param.get("attrName")+"%");
 			}
 		}
 		finder.append(" order by createTime desc ");
