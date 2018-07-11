@@ -14,7 +14,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * ${tabComment}
+ * ${model.tabComment}
  * 表${tablename}实体
  */
 @Entity
@@ -29,7 +29,7 @@ private static final long serialVersionUID = 1L;
 	<#if col.isPK>
 	@Id
 	</#if>
-	@Column(name = "${col.columnName}")
+	@Column(name="${col.columnName}")
 	<#if (col.colType=="Integer") && (col.precision==1) && (col.columnName?starts_with("IS") || col.columnName?starts_with("is") || col.comment?index_of("是否")!=-1)>
 	private Boolean ${func.convertUnderLine(col.columnName)};
 	<#elseif (col.colType=="Integer") && (col.precision<=4)>
@@ -37,7 +37,7 @@ private static final long serialVersionUID = 1L;
 	<#elseif (col.colType=="Integer") && (col.precision>=9)>
 	private Long ${func.convertUnderLine(col.columnName)};
 	<#else>
-	private ${col.colType}  ${func.convertUnderLine(col.columnName)};
+	private ${col.colType} ${func.convertUnderLine(col.columnName)};
 	</#if>
 </#list>
 <#-- 字表属性生成 -->
