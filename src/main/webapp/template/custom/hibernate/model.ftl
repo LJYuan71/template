@@ -14,7 +14,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * ${tabComment}
+ * ${model.tabComment}
  * 表${tablename}实体
  */
 @Entity

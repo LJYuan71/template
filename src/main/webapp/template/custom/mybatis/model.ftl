@@ -7,7 +7,7 @@ package ${domainsuf}.${system}.${modular}.${packagename}.model;
 import java.io.Serializable;
 
 /**
- * ${tabComment}
+ * ${model.tabComment}
  * 表${tablename}实体
  */
 public class ${modelname} implements Serializable {

@@ -56,5 +56,8 @@ public class PathUtil {
 		return strResult;
 	}
 	
+	public static String getbasePath(){
+		return Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("/target/classes/", "");
+	}
 	
 }

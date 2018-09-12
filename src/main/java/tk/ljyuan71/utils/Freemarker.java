@@ -56,11 +56,16 @@ public class Freemarker {
 			//设定空值处理
 			cfg.setClassicCompatible(true);
 			//设定去哪里读取相应的ftl模板文件
+			File file = null;
+			String templatePath = "/template/";
 			if (isCustom) {
-				cfg.setDirectoryForTemplateLoading(new File(PathUtil.getClasspath()+"/template/custom/"+ftlPath+"/"));
-			} else {
-				cfg.setDirectoryForTemplateLoading(new File(PathUtil.getClasspath()+"/template/"+ftlPath+"/"));
+				templatePath += "custom/";
 			}
+			file = new File(PathUtil.getClasspath()+templatePath+ftlPath+"/");
+			if(!file.exists()){
+				file = new File(PathUtil.getbasePath()+"/src/main/webapp"+templatePath+ftlPath+"/");
+			}
+			cfg.setDirectoryForTemplateLoading(file);
 			//在模板文件目录中找到名称为name的文件
 			Template temp = cfg.getTemplate(ftlName);
 			return temp;

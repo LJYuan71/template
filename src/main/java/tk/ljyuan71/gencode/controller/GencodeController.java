@@ -23,6 +23,7 @@ import tk.ljyuan71.gencode.db.model.Database;
 import tk.ljyuan71.gencode.db.model.TableModel;
 import tk.ljyuan71.utils.AppUtil;
 import tk.ljyuan71.utils.Freemarker;
+import tk.ljyuan71.utils.GeneratorUtil;
 import tk.ljyuan71.utils.SysConfig;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -398,8 +399,10 @@ public class GencodeController {
 		return dbHelper;
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws Exception {
+		//添加main方法启动
+		String path = GeneratorUtil.generator("zb_gc", null, null, "hibernate", "D:\\test", false);
+		System.out.println("代码生成成功，路径："+path);
 	}
 	
 }
